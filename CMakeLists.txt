@@ -13,16 +13,20 @@ qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0004 NEW)
 qt_policy(SET QTP0005 NEW)
 
-# include(FetchContent)
-# FetchContent_Declare(
-#     quixflux
-#     GIT_REPOSITORY "https://github.com/fajar-adianto/quixflux.git"
-#     GIT_TAG main
-# )
-# FetchContent_MakeAvailable(quixflux)
-add_subdirectory(quixflux)
+include(FetchContent)
+FetchContent_Declare(
+    quixflux
+    GIT_REPOSITORY "https://github.com/fajar-adianto/quixflux.git"
+    GIT_TAG main
+)
+FetchContent_MakeAvailable(quixflux)
 
-add_subdirectory(abseil-cpp)
+FetchContent_Declare(
+    abseilCpp
+    GIT_REPOSITORY "https://github.com/abseil/abseil-cpp.git"
+    GIT_TAG master
+)
+FetchContent_MakeAvailable(abseilCpp)
 
 set_source_files_properties(Styles/FxStyle.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 set_source_files_properties(Actions/FxActions.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
