@@ -151,8 +151,8 @@ qt_add_qml_module(Fluxion
         Controls/impl/md_icons/md_icons_webfont.ttf
         Controls/impl/shaders/RectangularGlow.frag.qsb
         Styles/fonts/RobotoFlex.ttf
-    IMPORTS
-        TARGET QuixFlux
+    DEPENDENCIES
+        QuixFlux
 )
 
 set_target_properties(Fluxion PROPERTIES
@@ -177,4 +177,5 @@ target_include_directories(Fluxion PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Internal include directory.
 include_directories(cpp)
+
 
