@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(QT_QML_OUTPUT_DIRECTORY  ${CMAKE_BINARY_DIR})
 set(QT_QML_GENERATE_QMLLS_INI ON)
 
-find_package(Qt6 6.8 REQUIRED COMPONENTS Quick QuickControls2)
+find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
 
 qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0004 NEW)
@@ -177,3 +177,4 @@ target_include_directories(Fluxion PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Internal include directory.
 include_directories(cpp)
+
