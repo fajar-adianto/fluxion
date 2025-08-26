@@ -97,6 +97,7 @@ T.CheckBox {
         typeScaleToken: FxStyle.tokens.sys.typescale.title_small
 
         // Indicator icon specs (default values).
+        color.defaultValue: "transparent"
         opacity.defaultValue: 1.00
 
         // Indicator icon  specs (enabled).
@@ -108,6 +109,9 @@ T.CheckBox {
 
         // Indicator icon  specs (hovered).
         color.hovered: root.isError ? FxStyle.tokens.sys.color.errorAccent : (root.checked ? FxStyle.tokens.sys.color.primaryAccent : "transparent")
+
+        // Indicator icon  specs (pressed).
+        color.pressed: root.isError ? FxStyle.tokens.sys.color.errorAccent : (root.checked ? FxStyle.tokens.sys.color.primaryAccent : "transparent")
     }
 
     FxContainer {
