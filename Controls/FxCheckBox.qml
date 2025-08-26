@@ -10,22 +10,10 @@ T.CheckBox {
 
     property bool isError: false
 
-    property alias containerSpecs: container.containerSpecs
     property alias labelTextSpecs: label_text_specs
-    property alias stateLayerSpecs: container.stateLayerSpecs
+    property alias stateLayerSpecs: state_layer.stateLayerSpecs
 
     property alias interactionState: interaction_state
-
-    property string iconName
-
-    property bool isDense: false
-    readonly property bool hasIcon: iconName.length > 0
-    readonly property bool iconOnly: hasIcon && (root.text.length <= 0)
-
-    readonly property real implicitContainerHeight: 40
-    readonly property real implicitLeftPadding: iconOnly ? 0 : (isDense ? 12 : (hasIcon ? 16 : 24))
-    readonly property real implicitRightPadding: iconOnly ? 0 : (isDense ? hasIcon ? 16 : 12 : 24)
-
 
     // Private properties.
 
@@ -35,26 +23,28 @@ T.CheckBox {
         readonly property real containerSize: 18
         readonly property real iconSize: 18
         readonly property real stateLayerSize: 40
-        readonly property real targetSize: 48
+        readonly property real targetSize: 40 + (root.padding * 2)
+
+        readonly property real spacing: 8
 
         readonly property real indicatorPadding: (_.targetSize - _.containerSize) / 2
         readonly property real stateLayerPadding: (_.targetSize - _.stateLayerSize) / 2
-        readonly property real textPadding: _.targetSize + 8
+        readonly property real textPadding: _.targetSize + _.spacing
     }
 
     // Object properties.
 
     hoverEnabled: true
 
-    leftPadding: implicitLeftPadding
-    rightPadding: implicitRightPadding
+    implicitHeight: _.targetSize
+    implicitWidth: (root.text.length > 0) ? (_.textPadding + root.contentItem.width) : _.targetSize
 
-    height: implicitContainerHeight
-    width: implicitLeftPadding + contentItem.implicitWidth + implicitRightPadding
+    height: _.targetSize
+    width: (root.text.length > 0) ? (_.textPadding + root.contentItem.width) : _.targetSize
 
     font: label_text_specs.typeScaleToken.font
 
-    background: container
+    background: state_layer
     indicator: indicator_box
 
     FxInteractionState {
@@ -64,15 +54,28 @@ T.CheckBox {
     }
 
     FxContainer {
-        id: container
+        id: state_layer
         state: interaction_state.state
         containerSpecs.shapeToken: FxStyle.tokens.sys.shape.corner.full
 
-        // Container specs (disabled).
-        containerSpecs.color.disabled: FxStyle.tokens.sys.color.surfaceAccent
-        containerSpecs.opacity.disabled: 0.12
+        containerSpecs.color.defaultValue: "transparent"
 
-        anchors.centerIn: root
+        // State layer specs (hovered).
+        containerSpecs.color.hovered: root.isError ? FxStyle.tokens.sys.color.error : (root.checked ? FxStyle.tokens.sys.color.primary : FxStyle.tokens.sys.color.surfaceAccent)
+        containerSpecs.opacity.hovered: FxStyle.tokens.sys.state.hovered.stateLayerOpacity
+
+        // State layer specs (focused).
+        containerSpecs.color.focused: root.isError ? FxStyle.tokens.sys.color.error : (root.checked ? FxStyle.tokens.sys.color.primary : FxStyle.tokens.sys.color.surfaceAccent)
+        containerSpecs.opacity.focused: FxStyle.tokens.sys.state.focused.stateLayerOpacity
+
+        // State layer specs (pressed).
+        containerSpecs.color.pressed: root.isError ? FxStyle.tokens.sys.color.error : (root.checked ? FxStyle.tokens.sys.color.primary : FxStyle.tokens.sys.color.surfaceAccent)
+        containerSpecs.opacity.pressed: FxStyle.tokens.sys.state.pressed.stateLayerOpacity
+
+        height: _.stateLayerSize
+        width: _.stateLayerSize
+        x: _.stateLayerPadding
+        anchors.verticalCenter: root.verticalCenter
     }
 
     FxTextSpecification {
@@ -137,7 +140,7 @@ T.CheckBox {
 
         height: _.containerSize
         width: _.containerSize
-        x: root.leftPadding + _.indicatorPadding
+        x: _.indicatorPadding
         anchors.verticalCenter: root.verticalCenter
 
         // Child objects.
@@ -160,6 +163,7 @@ T.CheckBox {
         active: root.text.length > 0
         visible: active
 
+        x: _.textPadding
         anchors.verticalCenter: root.verticalCenter
 
         sourceComponent: Component {
@@ -171,8 +175,6 @@ T.CheckBox {
                 opacity: label_text_specs.opacity.value
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-
-                leftPadding: root.leftPadding + _.textPadding
             }
         }
     }
