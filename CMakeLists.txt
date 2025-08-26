@@ -153,6 +153,7 @@ qt_add_qml_module(Fluxion
         Styles/fonts/RobotoFlex.ttf
     DEPENDENCIES
         QuixFlux
+        QML_FILES Controls/FxCheckBox.qml
 )
 
 set_target_properties(Fluxion PROPERTIES
