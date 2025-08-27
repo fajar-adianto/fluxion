@@ -110,6 +110,9 @@ T.CheckBox {
         // Indicator icon  specs (hovered).
         color.hovered: root.isError ? FxStyle.tokens.sys.color.errorAccent : (root.checked ? FxStyle.tokens.sys.color.primaryAccent : "transparent")
 
+        // Indicator icon  specs (focused).
+        color.focused: root.isError ? FxStyle.tokens.sys.color.errorAccent : (root.checked ? FxStyle.tokens.sys.color.primaryAccent : "transparent")
+
         // Indicator icon  specs (pressed).
         color.pressed: root.isError ? FxStyle.tokens.sys.color.errorAccent : (root.checked ? FxStyle.tokens.sys.color.primaryAccent : "transparent")
     }
