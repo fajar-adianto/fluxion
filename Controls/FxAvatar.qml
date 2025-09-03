@@ -12,7 +12,7 @@ Item {
         Icon
     }
 
-    property real avatarSize: 30
+    property real avatarSize: 40
 
     property color backgroundColor: FxStyle.tokens.sys.color.tertiaryFixed
     property color fontColor: FxStyle.tokens.sys.color.tertiaryFixedAccent
@@ -30,13 +30,27 @@ Item {
         readonly property real avatarSize: root.avatarSize
 
         function getInitials(name) {
-          if (!name.trim()) return "??"; // Handle empty or whitespace input
+            if (!name || typeof name !== "string") return "";
 
-          const words = name.trim().split(/\s+/);
-          const first = words[0]?.[0] || "";
-          const last = words.length > 1 ? words[words.length - 1][0] : words[0]?.[1] || "";
+            // Trim and split by spaces (ignore multiple spaces)
+            const parts = name.trim().split(/\s+/);
 
-          return (first + last).toUpperCase();
+            if (parts.length === 0) return "";
+
+            let initials = "";
+
+            if (parts.length === 1) {
+              // One name → 1 letter
+              initials = parts[0][0];
+            } else if (parts.length === 2) {
+              // Two names → first + last
+              initials = parts[0][0] + parts[1][0];
+            } else {
+              // Three or more → first + middle + last
+              initials = parts[0][0] + parts[1][0] + parts[parts.length - 1][0];
+            }
+
+            return initials.toUpperCase();
         }
 
         onAvatarSizeChanged: {
@@ -107,7 +121,7 @@ Item {
     Component {
         id: initials_avatar
         Text {
-            font: (root.height >= 30) ? FxStyle.tokens.sys.typescale.title_medium.font : FxStyle.tokens.sys.typescale.title_small.font
+            font: (root.height > 30) ? FxStyle.tokens.sys.typescale.title_small.font : FxStyle.tokens.sys.typescale.body_small.font
             text: _.initials
             color: root.fontColor
             horizontalAlignment: Text.AlignHCenter
