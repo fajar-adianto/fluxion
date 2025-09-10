@@ -8,10 +8,6 @@ FxButton {
     property bool isOutlined: false
     property bool isStandard: false
 
-    // Object properties.
-
-    isDense: !isOutlined
-
     // Container specs (default values)
 
     containerSpecs.color.defaultValue: "transparent"
