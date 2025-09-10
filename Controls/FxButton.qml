@@ -41,13 +41,13 @@ T.Button {
     QtObject {
         id: _
 
-        property var iconOnlyWidths: ({})
+        property var iconOnlyWidths: (root.iconOnlyWidthPolicy === FxButton.IconOnlyWidthPolicy.Wide) ?
+                                         wideWidths : (root.iconOnlyWidthPolicy === FxButton.IconOnlyWidthPolicy.Narrow) ?
+                                             narrowWidths : heights
 
         readonly property real containerHeigth: heights[root.buttonSize]
         readonly property real leadingPadding: root.iconOnly ? 0 : paddings[root.buttonSize]
         readonly property real trailingPadding: root.iconOnly ? 0 : paddings[root.buttonSize]
-
-        readonly property int iconOnlyWidthPolicy: root.iconOnlyWidthPolicy
 
         readonly property var heights:({
             [FxButton.Size.ExtraSmall]: 32,
@@ -96,15 +96,6 @@ T.Button {
             [FxButton.Size.Large]: 12,
             [FxButton.Size.ExtraLarge]: 16
         })
-
-        onIconOnlyWidthPolicyChanged: {
-            if (_.iconOnlyWidthPolicy === FxButton.IconOnlyWidthPolicy.Narrow)
-                _.iconOnlyWidths = _.narrowWidths;
-            else if (_.iconOnlyWidthPolicy === FxButton.IconOnlyWidthPolicy.Wide)
-                _.iconOnlyWidths = _.wideWidths;
-            else
-                _.iconOnlyWidths = _.heights;
-        }
     }
 
     // Object properties.
@@ -153,7 +144,7 @@ T.Button {
     contentItem: Item {
 
         implicitHeight: _.containerHeigth
-        implicitWidth: root.iconOnly ? _.iconOnlyWidths[root.iconOnlyWidthPolicy] : button_content.implicitWidth
+        implicitWidth: root.iconOnly ? _.iconOnlyWidths[root.buttonSize] : button_content.implicitWidth
         anchors.centerIn: root
 
         Row {
