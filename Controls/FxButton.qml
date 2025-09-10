@@ -49,7 +49,7 @@ T.Button {
         readonly property real leadingPadding: root.iconOnly ? 0 : paddings[root.buttonSize]
         readonly property real trailingPadding: root.iconOnly ? 0 : paddings[root.buttonSize]
 
-        readonly property var heights:({
+        readonly property var heights: ({
             [FxButton.Size.ExtraSmall]: 32,
             [FxButton.Size.Small]: 40,
             [FxButton.Size.Medium]: 56,
@@ -57,7 +57,7 @@ T.Button {
             [FxButton.Size.ExtraLarge]: 136
         })
 
-        readonly property var narrowWidths:({
+        readonly property var narrowWidths: ({
             [FxButton.Size.ExtraSmall]: 28,
             [FxButton.Size.Small]: 32,
             [FxButton.Size.Medium]: 48,
@@ -65,7 +65,7 @@ T.Button {
             [FxButton.Size.ExtraLarge]: 104
         })
 
-        readonly property var wideWidths:({
+        readonly property var wideWidths: ({
             [FxButton.Size.ExtraSmall]: 40,
             [FxButton.Size.Small]: 52,
             [FxButton.Size.Medium]: 72,
@@ -73,7 +73,7 @@ T.Button {
             [FxButton.Size.ExtraLarge]: 184
         })
 
-        readonly property var iconSizes:({
+        readonly property var iconSizes: ({
             [FxButton.Size.ExtraSmall]: 20,
             [FxButton.Size.Small]: 24,
             [FxButton.Size.Medium]: 24,
@@ -81,7 +81,7 @@ T.Button {
             [FxButton.Size.ExtraLarge]: 40
         })
 
-        readonly property var paddings:({
+        readonly property var paddings: ({
             [FxButton.Size.ExtraSmall]: 12,
             [FxButton.Size.Small]: 16,
             [FxButton.Size.Medium]: 24,
@@ -89,13 +89,21 @@ T.Button {
             [FxButton.Size.ExtraLarge]: 64
         })
 
-        readonly property var spacings:({
+        readonly property var spacings: ({
             [FxButton.Size.ExtraSmall]: 4,
             [FxButton.Size.Small]: 8,
             [FxButton.Size.Medium]: 8,
             [FxButton.Size.Large]: 12,
             [FxButton.Size.ExtraLarge]: 16
         })
+
+        readonly property var typeScaleTokens: ({
+           [FxButton.Size.ExtraSmall]: FxStyle.tokens.sys.typescale.title_small,
+           [FxButton.Size.Small]: FxStyle.tokens.sys.typescale.title_small,
+           [FxButton.Size.Medium]: FxStyle.tokens.sys.typescale.title_medium,
+           [FxButton.Size.Large]: FxStyle.tokens.sys.typescale.headline_small,
+           [FxButton.Size.ExtraLarge]: FxStyle.tokens.sys.typescale.headline_large
+       })
     }
 
     // Object properties.
@@ -131,7 +139,7 @@ T.Button {
     FxTextSpecification {
         id: label_text_specs
         state: interaction_state.state
-        typeScaleToken: FxStyle.tokens.sys.typescale.label_large
+        typeScaleToken: _.typeScaleTokens[root.buttonSize]
 
         // Label text specs (default values).
         opacity.defaultValue: 1.00
