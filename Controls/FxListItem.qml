@@ -176,6 +176,7 @@ FxContainer {
                     text: root.headlineText
                     elide: Text.ElideRight
                     wrapMode: Text.Wrap
+                    maximumLineCount: 1
                     font: headline_text_specs.typeScaleToken.font
                     color: headline_text_specs.color.value
                     opacity: headline_text_specs.opacity.value
