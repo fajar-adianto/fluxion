@@ -83,10 +83,21 @@ T.Button {
             }
         }
 
-        readonly property FxShapeToken containerPressedMorph: _.measurementToken.shape.pressedMorph
         readonly property FxShapeToken containerShape: (root.buttonShape == FxExpressiveButton.Shape.Square) ?
                                                            _.measurementToken.shape.square :
                                                            _.measurementToken.shape.round
+
+        readonly property FxShapeToken selectedContainerShape: (root.buttonShape == FxExpressiveButton.Shape.Square) ?
+                                                                   _.measurementToken.selectedContainerShape.square :
+                                                                   _.measurementToken.selectedContainerShape.round
+
+        readonly property FxShapeToken containerNormalShape: root.checkable && root.checked
+                                     ? _.selectedContainerShape
+                                     : _.containerShape
+
+        readonly property FxShapeToken containerPressedMorph: root.checkable
+                                     ? _.measurementToken.selectedContainerShape.pressedMorph
+                                     : _.measurementToken.shape.pressedMorph
 
         readonly property real containerHeigth: measurementToken.height
         readonly property real leadingPadding: root.iconOnly ? 0 : measurementToken.space.leading
@@ -235,7 +246,8 @@ T.Button {
     FxContainer {
         id: container
         state: interaction_state.state
-        containerSpecs.shapeToken: interaction_state.isPressed ? _.containerPressedMorph : _.containerShape
+        containerSpecs.shapeToken: interaction_state.isPressed ? _.containerPressedMorph : _.containerNormalShape
+        containerSpecs.outlineWidth.defaultValue: _.measurementToken.outlineWidth
 
         containerSpecs.elevation.enabled: _.variantToken.enabled.container.elevation
         containerSpecs.opacity.enabled: _.variantToken.enabled.container.opacity
