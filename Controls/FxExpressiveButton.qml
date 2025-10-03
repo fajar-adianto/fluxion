@@ -187,6 +187,29 @@ T.Button {
                                                                          _.variantToken.pressed.icon.color_toggle_selected :
                                                                          _.variantToken.pressed.icon.color_toggle_unselected):
                                                                     _.variantToken.pressed.icon.color
+
+        // State layer colors.
+
+        readonly property color stateLayerColor_enabled: root.checkable ? (root.checked ?
+                                                                               _.variantToken.enabled.container.stateLayer.color_toggle_selected :
+                                                                               _.variantToken.enabled.container.stateLayer.color_toggle_unselected):
+                                                                          _.variantToken.enabled.container.stateLayer.color
+        readonly property color stateLayerColor_disabled: root.checkable ? (root.checked ?
+                                                                                _.variantToken.disabled.container.stateLayer.color_toggle_selected :
+                                                                                _.variantToken.disabled.container.stateLayer.color_toggle_unselected):
+                                                                           _.variantToken.disabled.container.stateLayer.color
+        readonly property color stateLayerColor_hovered: root.checkable ? (root.checked ?
+                                                                               _.variantToken.hovered.container.stateLayer.color_toggle_selected :
+                                                                               _.variantToken.hovered.container.stateLayer.color_toggle_unselected):
+                                                                          _.variantToken.hovered.container.stateLayer.color
+        readonly property color stateLayerColor_focused: root.checkable ? (root.checked ?
+                                                                               _.variantToken.focused.container.stateLayer.color_toggle_selected :
+                                                                               _.variantToken.focused.container.stateLayer.color_toggle_unselected):
+                                                                          _.variantToken.focused.container.stateLayer.color
+        readonly property color stateLayerColor_pressed: root.checkable ? (root.checked ?
+                                                                               _.variantToken.pressed.container.stateLayer.color_toggle_selected :
+                                                                               _.variantToken.pressed.container.stateLayer.color_toggle_unselected):
+                                                                          _.variantToken.pressed.container.stateLayer.color
     }
 
     // Object properties.
@@ -238,6 +261,21 @@ T.Button {
         containerSpecs.opacity.pressed: _.variantToken.pressed.container.opacity
         containerSpecs.color.pressed: _.containerColor_pressed
         containerSpecs.outlineColor.pressed: _.containerOutlineColor_pressed
+
+        stateLayerSpecs.opacity.enabled: _.variantToken.enabled.container.stateLayer.opacity
+        stateLayerSpecs.color.enabled: _.stateLayerColor_enabled
+
+        stateLayerSpecs.opacity.disabled: _.variantToken.disabled.container.stateLayer.opacity
+        stateLayerSpecs.color.disabled: _.stateLayerColor_disabled
+
+        stateLayerSpecs.opacity.hovered: _.variantToken.hovered.container.stateLayer.opacity
+        stateLayerSpecs.color.hovered: _.stateLayerColor_hovered
+
+        stateLayerSpecs.opacity.focused: _.variantToken.focused.container.stateLayer.opacity
+        stateLayerSpecs.color.focused: _.stateLayerColor_focused
+
+        stateLayerSpecs.opacity.pressed: _.variantToken.pressed.container.stateLayer.opacity
+        stateLayerSpecs.color.pressed: _.stateLayerColor_pressed
     }
 
     FxTextSpecification {
