@@ -7,6 +7,7 @@ FxContainerSpecification::FxContainerSpecification(QObject *parent)
     , opacity_(new FxSpecFloat(this))
     , outline_color_(new FxSpecColor(this))
     , outline_width_(new FxSpecInteger(this))
+    , shape_token_(nullptr)
 {
     color_->setDefaultValue(QColor(Qt::white));
     outline_color_->setDefaultValue(QColor(Qt::transparent));

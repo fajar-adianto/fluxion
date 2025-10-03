@@ -20,6 +20,7 @@ QxStore {
 
         readonly property alias sys: system_tokens
         readonly property alias ref: reference_tokens
+        readonly property alias comp: component_tokens
     }
 
     // Fluxion Style Store Components.
@@ -29,6 +30,9 @@ QxStore {
     FxMotionStyle { id: motion_style }
     FxShapeStyle { id: shape_style }
     FxTypographyStyle { id: typography_style }
+
+    FxButtonStyle { id: button_style }
+    FxIconButtonStyle { id: icon_button_style }
 
     // Private objects.
 
@@ -49,6 +53,13 @@ QxStore {
         readonly property alias typescale: typography_style.systemTokens
 
         readonly property alias state: state
+    }
+
+    QtObject {
+        id: component_tokens
+
+        readonly property alias button: button_style.componentTokens
+        readonly property alias iconButton: icon_button_style.componentTokens
     }
 
     QtObject {

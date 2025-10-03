@@ -8,6 +8,8 @@ set(QT_QML_OUTPUT_DIRECTORY  ${CMAKE_BINARY_DIR})
 set(QT_QML_GENERATE_QMLLS_INI ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0004 NEW)
@@ -38,7 +40,8 @@ qt_add_qml_module(Fluxion
     URI Fluxion
     VERSION 1.0
     SOURCES
-        cpp/fxcolorscheme.h cpp/fxcolorscheme.cpp
+        cpp/fx_button_measurement_token.h cpp/fx_button_measurement_token.cpp
+        cpp/fx_color_scheme.h cpp/fx_color_scheme.cpp
         cpp/fx_container_specification.h cpp/fx_container_specification.cpp
         cpp/fx_icon_specification.h cpp/fx_icon_specification.cpp
         cpp/fx_shape_token.h cpp/fx_shape_token.cpp
@@ -124,6 +127,7 @@ qt_add_qml_module(Fluxion
         Controls/impl/FxStateLayer.qml
         Controls/FxAvatar.qml
         Controls/FxButton.qml
+        Controls/FxCheckBox.qml
         Controls/FxContainer.qml
         Controls/FxElevatedButton.qml
         Controls/FxFilledButton.qml
@@ -140,6 +144,7 @@ qt_add_qml_module(Fluxion
         Controls/FxSurface.qml
         Controls/FxTextButton.qml
         Controls/FxTextField.qml
+        Styles/FxButtonStyle.qml
         Styles/FxColorStyle.qml
         Styles/FxElevationStyle.qml
         Styles/FxMotionStyle.qml
@@ -153,7 +158,9 @@ qt_add_qml_module(Fluxion
         Styles/fonts/RobotoFlex.ttf
     DEPENDENCIES
         QuixFlux
-        QML_FILES Controls/FxCheckBox.qml
+        SOURCES cpp/fx_button_variant_token.h cpp/fx_button_variant_token.cpp
+        QML_FILES Styles/FxIconButtonStyle.qml
+        QML_FILES Controls/FxExpressiveButton.qml
 )
 
 set_target_properties(Fluxion PROPERTIES
@@ -173,6 +180,8 @@ target_link_libraries(Fluxion
     PUBLIC
         QuixFlux QuixFluxplugin
 )
+target_link_libraries(Fluxion PRIVATE Qt6::Core)
+target_link_libraries(Fluxion PRIVATE Qt6::Core)
 
 target_include_directories(Fluxion PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

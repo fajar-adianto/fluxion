@@ -1,4 +1,4 @@
-#include "fxcolorscheme.h"
+#include "fx_color_scheme.h"
 
 #include "dynamiccolor/material_dynamic_colors.h"
 #include "scheme/scheme_content.h"
