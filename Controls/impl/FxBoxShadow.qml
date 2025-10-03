@@ -43,9 +43,9 @@ FxRectangularGlow {
 
     // Change animation.
 
-    Behavior on offsetX { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-    Behavior on offsetY { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-    Behavior on blurRadius { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-    Behavior on spreadRadius { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-    Behavior on strength { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
+    // Behavior on offsetX { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
+    // Behavior on offsetY { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
+    // Behavior on blurRadius { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
+    // Behavior on spreadRadius { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
+    // Behavior on strength { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
 }

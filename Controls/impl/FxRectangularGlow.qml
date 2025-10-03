@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
 
 import QtQuick
+import Fluxion
 
 /*
    A cross-graphics API implementation of QtGraphicalEffects' RectangularGlow.
@@ -201,6 +202,9 @@ Item {
         property real relativeSizeY: relativeSizeX * (width / height)
         property real spread: rootItem.spread / 2.0
         property real cornerRadius: clampedCornerRadius()
+
+        Behavior on width { FxSpringAnimation { springToken: FxStyle.tokens.sys.motion.spring.fast.spatial } }
+        Behavior on height { FxSpringAnimation { springToken: FxStyle.tokens.sys.motion.spring.fast.spatial } }
 
         fragmentShader: "shaders/RectangularGlow.frag.qsb"
     }

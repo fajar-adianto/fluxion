@@ -10,6 +10,7 @@ set(QT_QML_GENERATE_QMLLS_INI ON)
 find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0004 NEW)
@@ -161,6 +162,8 @@ qt_add_qml_module(Fluxion
         SOURCES cpp/fx_button_variant_token.h cpp/fx_button_variant_token.cpp
         QML_FILES Styles/FxIconButtonStyle.qml
         QML_FILES Controls/FxExpressiveButton.qml
+        SOURCES cpp/fx_motion_spring_token.h cpp/fx_motion_spring_token.cpp
+        QML_FILES Controls/impl/FxSpringAnimation.qml
 )
 
 set_target_properties(Fluxion PROPERTIES
@@ -180,6 +183,7 @@ target_link_libraries(Fluxion
     PUBLIC
         QuixFlux QuixFluxplugin
 )
+target_link_libraries(Fluxion PRIVATE Qt6::Core)
 target_link_libraries(Fluxion PRIVATE Qt6::Core)
 target_link_libraries(Fluxion PRIVATE Qt6::Core)
 
