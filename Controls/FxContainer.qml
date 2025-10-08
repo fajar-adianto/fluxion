@@ -24,7 +24,7 @@ Item {
         elevation: container_specs.elevation.value
         opacity: container_specs.opacity.value
         shapeToken: container_specs.shapeToken
-        roundingSpringToken: container_specs.springToken
+        roundingSpringToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial
 
         borderColor: container_specs.outlineColor.value
         borderWidth: container_specs.outlineWidth.value
