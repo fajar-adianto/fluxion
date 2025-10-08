@@ -5,17 +5,11 @@ Behavior {
     id: root
 
     required property FxMotionSpringToken springToken
+    readonly property bool steady: !animation.running
 
     SpringAnimation {
-
-        property real reciprocal: (1.0 / root.targetValue)
-        property real value: root.targetProperty.object[root.targetProperty.name]
-
-        target: root.targetProperty.object
-        property: root.targetProperty.name
-        to: root.targetValue
-
+        id: animation
         spring: root.springToken.stiffnessForAnimation
-        damping: (root.springToken.damping * (1.0 - Math.abs((value - to) * reciprocal)))
+        damping: root.springToken.dampingForAnimation
     }
 }

@@ -7,7 +7,7 @@ Item {
 
     property alias color: shape.color
     property int elevation: FxStyle.tokens.sys.elevation.level0
-    property FxMotionSpringToken elevationSpringToken: FxStyle.tokens.sys.motion.spring.fast.spatial
+    property FxMotionSpringToken elevationSpringToken: FxStyle.tokens.sys.motion.spring.fast.effects
     property FxMotionSpringToken roundingSpringToken: FxStyle.tokens.sys.motion.spring.fast.spatial
     property FxShapeToken shapeToken: FxStyle.tokens.sys.shape.corner.noRounding
 
@@ -19,9 +19,9 @@ Item {
         // Internal elevation value as float-type.
         //      Workaround to prevent <layer> of elevation components to be abruptly disabled when elevation is set to 0.
         property real elevation: root.elevation
-        FxSpringBehavior on elevation { springToken: root.elevationSpringToken }
+        FxSpringBehavior on elevation { id: elevation_effect; springToken: root.elevationSpringToken }
 
-        property bool activeElevation: _.elevation > 0
+        property bool activeElevation: _.elevation > 0 || !elevation_effect.steady
         property bool isFullCorners: (root.shapeToken.role === FxShapeToken.Role.Full)
         property real fullCornerRadius: Math.abs(Math.min(root.height, root.width) * FxStyle.tokens.sys.shape.corner.full.value)
 
@@ -135,9 +135,9 @@ Item {
         border.color: root.borderColor
         border.width: root.borderWidth
 
-        topLeftRadius: _.topLeftRadius
-        topRightRadius: _.topRightRadius
-        bottomRightRadius: _.bottomRightRadius
-        bottomLeftRadius: _.bottomLeftRadius
+        topLeftRadius: Math.max(0.0, _.topLeftRadius)
+        topRightRadius: Math.max(0.0, _.topRightRadius)
+        bottomRightRadius: Math.max(0.0, _.bottomRightRadius)
+        bottomLeftRadius: Math.max(0.0, _.bottomLeftRadius)
     }
 }
