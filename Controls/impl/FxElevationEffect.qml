@@ -1,11 +1,13 @@
 import QtQuick
-import "../../Styles"
+import Fluxion
 
 /*
    An effect for standard Material Design elevation shadows. Useful for using as \c layer.effect.
  */
 Item {
     id: effect
+
+    property FxMotionSpringToken springToken: FxStyle.tokens.sys.motion.spring.fast.effects
 
     /*
        The source the effect is applied to.
@@ -32,13 +34,6 @@ Item {
        \sa fullWidth
      */
     property bool fullHeight: false
-
-    /*
-       The duration at which the shadow's parameters change from one value to another.
-
-       \sa animationDuration
-     */
-    property int animationDuration: FxStyle.tokens.sys.motion.duration.medium2
 
     /*
        \internal
@@ -75,6 +70,7 @@ Item {
         // in the parent Item
         FxBoxShadow {
             id: umbra
+            springToken: effect.springToken
             offsetX: effect._umbra[effect._elevation].offsetX
             offsetY: effect._umbra[effect._elevation].offsetY
             blurRadius: effect._umbra[effect._elevation].blur
@@ -84,12 +80,12 @@ Item {
 
             fullWidth: effect.fullWidth
             fullHeight: effect.fullHeight
-            animationDuration: effect.animationDuration
             source: effect.sourceItem
         }
 
         FxBoxShadow {
             id: penumbra
+            springToken: effect.springToken
             offsetX: effect._penumbra[effect._elevation].offsetX
             offsetY: effect._penumbra[effect._elevation].offsetY
             blurRadius: effect._penumbra[effect._elevation].blur
@@ -99,12 +95,12 @@ Item {
 
             fullWidth: effect.fullWidth
             fullHeight: effect.fullHeight
-            animationDuration: effect.animationDuration
             source: effect.sourceItem
         }
 
         FxBoxShadow {
             id: ambient
+            springToken: effect.springToken
             offsetX: effect._ambient[effect._elevation].offsetX
             offsetY: effect._ambient[effect._elevation].offsetY
             blurRadius: effect._ambient[effect._elevation].blur
@@ -114,7 +110,6 @@ Item {
 
             fullWidth: effect.fullWidth
             fullHeight: effect.fullHeight
-            animationDuration: effect.animationDuration
             source: effect.sourceItem
         }
 

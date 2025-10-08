@@ -86,7 +86,7 @@ QxStore {
 
     FxMotionSpringToken {
         id: default_spatial
-        speed: FxMotionSpringToken.Fast
+        speed: FxMotionSpringToken.Default
         movement: FxMotionSpringToken.Spatial
         damping: root.useExpressiveMotionScheme ? 0.8 : 0.9
         stiffness: root.useExpressiveMotionScheme ? 380 : 700
@@ -94,7 +94,7 @@ QxStore {
 
     FxMotionSpringToken {
         id: slow_spatial
-        speed: FxMotionSpringToken.Fast
+        speed: FxMotionSpringToken.Slow
         movement: FxMotionSpringToken.Spatial
         damping: root.useExpressiveMotionScheme ? 0.8 : 0.9
         stiffness: root.useExpressiveMotionScheme ? 200 : 300
@@ -112,7 +112,7 @@ QxStore {
 
     FxMotionSpringToken {
         id: default_effects
-        speed: FxMotionSpringToken.Fast
+        speed: FxMotionSpringToken.Default
         movement: FxMotionSpringToken.Spatial
         damping: 1.0
         stiffness: 1600
@@ -120,7 +120,7 @@ QxStore {
 
     FxMotionSpringToken {
         id: slow_effects
-        speed: FxMotionSpringToken.Fast
+        speed: FxMotionSpringToken.Slow
         movement: FxMotionSpringToken.Spatial
         damping: 1.0
         stiffness: 800

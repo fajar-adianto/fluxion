@@ -66,6 +66,20 @@ void FxContainerSpecification::setShapeToken(FxShapeToken *token)
     emit shapeTokenChanged();
 }
 
+FxMotionSpringToken *FxContainerSpecification::springToken() const
+{
+    return spring_token_;
+}
+
+void FxContainerSpecification::setSpringToken(FxMotionSpringToken *token)
+{
+    if (spring_token_ == token)
+        return;
+
+    spring_token_ = token;
+    emit springTokenChanged();
+}
+
 QString FxContainerSpecification::state()
 {
     return state_;

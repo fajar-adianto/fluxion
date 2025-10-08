@@ -7,8 +7,8 @@ Item {
 
     property alias color: shape.color
     property int elevation: FxStyle.tokens.sys.elevation.level0
-    property int elevationChangeDuration: FxStyle.tokens.sys.motion.duration.short4
-    property int roundingChangeDuration: FxStyle.tokens.sys.motion.duration.short4
+    property FxMotionSpringToken elevationSpringToken: FxStyle.tokens.sys.motion.spring.fast.spatial
+    property FxMotionSpringToken roundingSpringToken: FxStyle.tokens.sys.motion.spring.fast.spatial
     property FxShapeToken shapeToken: FxStyle.tokens.sys.shape.corner.noRounding
 
     property color borderColor: "transparent"
@@ -16,7 +16,12 @@ Item {
 
     QtObject {
         id: _
-        property bool activeElevation: false
+        // Internal elevation value as float-type.
+        //      Workaround to prevent <layer> of elevation components to be abruptly disabled when elevation is set to 0.
+        property real elevation: root.elevation
+        FxSpringBehavior on elevation { springToken: root.elevationSpringToken }
+
+        property bool activeElevation: _.elevation > 0
         property bool isFullCorners: (root.shapeToken.role === FxShapeToken.Role.Full)
         property real fullCornerRadius: Math.abs(Math.min(root.height, root.width) * FxStyle.tokens.sys.shape.corner.full.value)
 
@@ -30,17 +35,10 @@ Item {
         property real leftEffectiveRadius: Math.max(topLeftRadius, bottomLeftRadius)
         property real rightEffectiveRadius: Math.max(topRightRadius, bottomRightRadius)
 
-        Behavior on topLeftRadius { SmoothedAnimation { velocity: -1; duration: root.roundingChangeDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-        Behavior on topRightRadius { SmoothedAnimation { velocity: -1; duration: root.roundingChangeDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-        Behavior on bottomRightRadius { SmoothedAnimation { velocity: -1; duration: root.roundingChangeDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-        Behavior on bottomLeftRadius { SmoothedAnimation { velocity: -1; duration: root.roundingChangeDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-    }
-
-    // Event handlers.
-
-    onElevationChanged: {
-        if (!_.activeElevation && (elevation > 0))
-            _.activeElevation = true;
+        FxSpringBehavior on topLeftRadius { springToken: root.roundingSpringToken }
+        FxSpringBehavior on topRightRadius { springToken: root.roundingSpringToken }
+        FxSpringBehavior on bottomRightRadius { springToken: root.roundingSpringToken }
+        FxSpringBehavior on bottomLeftRadius { springToken: root.roundingSpringToken }
     }
 
     // Child objects.
@@ -61,7 +59,7 @@ Item {
         layer.effect: FxRoundedElevationEffect {
             shapeToken: root.shapeToken
             elevation: root.elevation
-            animationDuration: root.elevationChangeDuration
+            springToken: root.elevationSpringToken
         }
     }
 
@@ -81,7 +79,7 @@ Item {
         layer.effect: FxRoundedElevationEffect {
             shapeToken: root.shapeToken
             elevation: root.elevation
-            animationDuration: root.elevationChangeDuration
+            springToken: root.elevationSpringToken
         }
     }
 
@@ -101,7 +99,7 @@ Item {
         layer.effect: FxRoundedElevationEffect {
             shapeToken: root.shapeToken
             elevation: root.elevation
-            animationDuration: root.elevationChangeDuration
+            springToken: root.elevationSpringToken
         }
     }
 
@@ -121,7 +119,7 @@ Item {
         layer.effect: FxRoundedElevationEffect {
             shapeToken: root.shapeToken
             elevation: root.elevation
-            animationDuration: root.elevationChangeDuration
+            springToken: root.elevationSpringToken
         }
     }
 
@@ -137,10 +135,9 @@ Item {
         border.color: root.borderColor
         border.width: root.borderWidth
 
-        radius: height/2
-        topLeftRadius: fullCorner ? undefined : _.topLeftRadius
-        topRightRadius: fullCorner ? undefined : _.topRightRadius
-        bottomRightRadius: fullCorner ? undefined : _.bottomRightRadius
-        bottomLeftRadius: fullCorner ? undefined : _.bottomLeftRadius
+        topLeftRadius: _.topLeftRadius
+        topRightRadius: _.topRightRadius
+        bottomRightRadius: _.bottomRightRadius
+        bottomLeftRadius: _.bottomLeftRadius
     }
 }

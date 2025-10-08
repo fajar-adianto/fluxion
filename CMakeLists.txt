@@ -164,6 +164,7 @@ qt_add_qml_module(Fluxion
         QML_FILES Controls/FxExpressiveButton.qml
         SOURCES cpp/fx_motion_spring_token.h cpp/fx_motion_spring_token.cpp
         QML_FILES Controls/impl/FxSpringAnimation.qml
+        QML_FILES Controls/impl/FxSpringBehavior.qml
 )
 
 set_target_properties(Fluxion PROPERTIES

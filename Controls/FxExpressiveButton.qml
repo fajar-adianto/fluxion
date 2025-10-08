@@ -246,6 +246,7 @@ T.Button {
     FxContainer {
         id: container
         state: interaction_state.state
+        containerSpecs.springToken: FxStyle.tokens.sys.motion.spring.fast.spatial
         containerSpecs.shapeToken: interaction_state.isPressed ? _.containerPressedMorph : _.containerNormalShape
         containerSpecs.outlineWidth.defaultValue: _.measurementToken.outlineWidth
 

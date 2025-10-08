@@ -22,8 +22,6 @@ FxRectangularGlow {
     property bool fullWidth
     property bool fullHeight
 
-    property int animationDuration: FxStyle.tokens.sys.motion.duration.medium2
-
     // qmllint disable unqualified
     // Intentionally duck-typed (QTBUG-94807)
     readonly property real sourceRadius: source && source.radius || 0
@@ -40,12 +38,4 @@ FxRectangularGlow {
     spread: strength
 
     cornerRadius: blurRadius + sourceRadius
-
-    // Change animation.
-
-    // Behavior on offsetX { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-    // Behavior on offsetY { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-    // Behavior on blurRadius { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-    // Behavior on spreadRadius { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
-    // Behavior on strength { SmoothedAnimation { velocity: -1; duration: animationDuration; easing.type: FxStyle.tokens.sys.motion.easing.emphasized } }
 }

@@ -10,6 +10,8 @@ import Fluxion
 Item {
     id: rootItem
 
+    property FxMotionSpringToken springToken: FxStyle.tokens.sys.motion.spring.fast.effects
+
     /*
         This property defines how many pixels outside the item area are reached
         by the glow.
@@ -46,6 +48,7 @@ Item {
 
     */
     property real glowRadius: 0.0
+    FxSpringBehavior on glowRadius { springToken: rootItem.springToken }
 
     /*
         This property defines how large part of the glow color is strenghtened
@@ -82,6 +85,7 @@ Item {
         \endtable
     */
     property real spread: 0.0
+    FxSpringBehavior on spread { springToken: rootItem.springToken }
 
     /*
         This property defines the RGBA color value which is used for the glow.
@@ -202,9 +206,6 @@ Item {
         property real relativeSizeY: relativeSizeX * (width / height)
         property real spread: rootItem.spread / 2.0
         property real cornerRadius: clampedCornerRadius()
-
-        Behavior on width { FxSpringAnimation { springToken: FxStyle.tokens.sys.motion.spring.fast.spatial } }
-        Behavior on height { FxSpringAnimation { springToken: FxStyle.tokens.sys.motion.spring.fast.spatial } }
 
         fragmentShader: "shaders/RectangularGlow.frag.qsb"
     }

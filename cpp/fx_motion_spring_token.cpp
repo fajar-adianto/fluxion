@@ -22,10 +22,13 @@ void FxMotionSpringToken::setDamping(qreal damping)
 
 qreal FxMotionSpringToken::dampingForAnimation()
 {
-    // Inverse the value of MD3 damping (0~1) to QML SpringAnimation damping (1~0).
-    qreal animation_damping = 1.0 - damping_;
+    // Damping must be adjusted for Qt6 QML SpringAnimation.
+    // This formula is empirical through trials & errors.
 
-    return std::clamp(animation_damping, 0.0, 1.0);
+    qreal animation_damping = (0.25 * damping_) + 0.1;
+    //qreal animation_damping = (damping_ * damping_) - (0.2 * damping_);
+
+    return std::clamp(animation_damping * 0.5, 0.0, 1.0);
 }
 
 FxMotionSpringToken::Movement FxMotionSpringToken::movement()
@@ -72,8 +75,9 @@ void FxMotionSpringToken::setStiffness(qreal stiffness)
 
 qreal FxMotionSpringToken::stiffnessForAnimation()
 {
-    // Convert MD3 stiffness to QML SpringAnimation spring (experimental value).
-    qreal animation_stiffness = stiffness_ * 0.001;
-    return std::clamp(animation_stiffness, 0.0, 5.0);
+    // Stiffness must be adjusted for Qt6 QML SpringAnimation.
+    // This formula is empirical through trials & errors.
+    qreal animation_stiffness = -(3.42e-7 * stiffness_ * stiffness_) + (0.00216 * stiffness_) + 1.482;
+    return std::clamp(animation_stiffness * 0.75, 0.0, 5.0);
 }
 

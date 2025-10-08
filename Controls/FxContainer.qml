@@ -24,6 +24,7 @@ Item {
         elevation: container_specs.elevation.value
         opacity: container_specs.opacity.value
         shapeToken: container_specs.shapeToken
+        springToken: container_specs.springToken
 
         borderColor: container_specs.outlineColor.value
         borderWidth: container_specs.outlineWidth.value
