@@ -29,7 +29,7 @@ QxStore {
     QtObject {
         id: shadow
 
-        readonly property real defaultStrength: 0.024
+        readonly property real defaultStrength: 0.025
         readonly property real maxStrength: 0.8
 
         readonly property real umbraOpacity: 0.2

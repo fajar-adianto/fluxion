@@ -42,9 +42,11 @@ qt_add_qml_module(Fluxion
     VERSION 1.0
     SOURCES
         cpp/fx_button_measurement_token.h cpp/fx_button_measurement_token.cpp
+        cpp/fx_button_variant_token.h cpp/fx_button_variant_token.cpp
         cpp/fx_color_scheme.h cpp/fx_color_scheme.cpp
         cpp/fx_container_specification.h cpp/fx_container_specification.cpp
         cpp/fx_icon_specification.h cpp/fx_icon_specification.cpp
+        cpp/fx_motion_spring_token.h cpp/fx_motion_spring_token.cpp
         cpp/fx_shape_token.h cpp/fx_shape_token.cpp
         cpp/fx_spec_color.h cpp/fx_spec_color.cpp
         cpp/fx_spec_float.h cpp/fx_spec_float.cpp
@@ -119,18 +121,19 @@ qt_add_qml_module(Fluxion
         Controls/impl/md_icons/md_icons_desktop.js
         Controls/impl/FxBoxShadow.qml
         Controls/impl/FxCaret.qml
-        Controls/impl/FxComponentColor.qml
         Controls/impl/FxContentStateModifier.qml
         Controls/impl/FxElevationEffect.qml
         Controls/impl/FxIconFont.qml
         Controls/impl/FxRectangularGlow.qml
         Controls/impl/FxRoundedElevationEffect.qml
+        Controls/impl/FxSpringBehavior.qml
         Controls/impl/FxStateLayer.qml
         Controls/FxAvatar.qml
         Controls/FxButton.qml
         Controls/FxCheckBox.qml
         Controls/FxContainer.qml
         Controls/FxElevatedButton.qml
+        Controls/FxExpressiveButton.qml
         Controls/FxFilledButton.qml
         Controls/FxFilledTextField.qml
         Controls/FxIcon.qml
@@ -139,7 +142,6 @@ qt_add_qml_module(Fluxion
         Controls/FxListItem.qml
         Controls/FxOutlinedButton.qml
         Controls/FxOutlinedTextField.qml
-        Controls/FxRoundedShape.qml
         Controls/FxSearch.qml
         Controls/FxSideSheet.qml
         Controls/FxSurface.qml
@@ -148,6 +150,7 @@ qt_add_qml_module(Fluxion
         Styles/FxButtonStyle.qml
         Styles/FxColorStyle.qml
         Styles/FxElevationStyle.qml
+        Styles/FxIconButtonStyle.qml
         Styles/FxMotionStyle.qml
         Styles/FxShapeStyle.qml
         Styles/FxTypographyStyle.qml
@@ -159,12 +162,6 @@ qt_add_qml_module(Fluxion
         Styles/fonts/RobotoFlex.ttf
     DEPENDENCIES
         QuixFlux
-        SOURCES cpp/fx_button_variant_token.h cpp/fx_button_variant_token.cpp
-        QML_FILES Styles/FxIconButtonStyle.qml
-        QML_FILES Controls/FxExpressiveButton.qml
-        SOURCES cpp/fx_motion_spring_token.h cpp/fx_motion_spring_token.cpp
-        QML_FILES Controls/impl/FxSpringAnimation.qml
-        QML_FILES Controls/impl/FxSpringBehavior.qml
 )
 
 set_target_properties(Fluxion PROPERTIES

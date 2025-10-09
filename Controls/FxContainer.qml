@@ -42,9 +42,14 @@ Item {
         opacity: state_layer_specs.opacity.value
 
         radius: height/2
-        topLeftRadius: fullCorner ? undefined : surface.shapeToken.corners.topLeft
-        topRightRadius: fullCorner ? undefined : surface.shapeToken.corners.topRight
-        bottomLeftRadius: fullCorner ? undefined : surface.shapeToken.corners.bottomLeft
-        bottomRightRadius: fullCorner ? undefined : surface.shapeToken.corners.bottomRight
+        topLeftRadius: surface.shapeToken.corners.topLeft
+        topRightRadius: surface.shapeToken.corners.topRight
+        bottomLeftRadius: surface.shapeToken.corners.bottomLeft
+        bottomRightRadius: surface.shapeToken.corners.bottomRight
+
+        FxSpringBehavior on topLeftRadius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
+        FxSpringBehavior on topRightRadius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
+        FxSpringBehavior on bottomRightRadius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
+        FxSpringBehavior on bottomLeftRadius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
     }
 }
