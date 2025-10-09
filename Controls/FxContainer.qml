@@ -34,6 +34,12 @@ Item {
         id: state_layer
 
         property bool fullCorner: surface.shapeToken === FxStyle.tokens.sys.shape.corner.full
+        property real fullCornerRadius: Math.abs(Math.min(root.height, root.width) * FxStyle.tokens.sys.shape.corner.full.value)
+
+        property real top_left_radius: fullCorner ? fullCornerRadius : surface.shapeToken.corners.topLeft
+        property real top_right_radius: fullCorner ? fullCornerRadius : surface.shapeToken.corners.topRight
+        property real bottom_left_radius: fullCorner ? fullCornerRadius : surface.shapeToken.corners.bottomLeft
+        property real bottom_right_radius: fullCorner ? fullCornerRadius : surface.shapeToken.corners.bottomRight
 
         z:1
         anchors.fill: root
@@ -42,14 +48,14 @@ Item {
         opacity: state_layer_specs.opacity.value
 
         radius: height/2
-        topLeftRadius: surface.shapeToken.corners.topLeft
-        topRightRadius: surface.shapeToken.corners.topRight
-        bottomLeftRadius: surface.shapeToken.corners.bottomLeft
-        bottomRightRadius: surface.shapeToken.corners.bottomRight
+        topLeftRadius: Math.max(0.0, top_left_radius)
+        topRightRadius: Math.max(0.0, top_right_radius)
+        bottomLeftRadius: Math.max(0.0, bottom_left_radius)
+        bottomRightRadius: Math.max(0.0, bottom_right_radius)
 
-        FxSpringBehavior on topLeftRadius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
-        FxSpringBehavior on topRightRadius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
-        FxSpringBehavior on bottomRightRadius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
-        FxSpringBehavior on bottomLeftRadius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
+        FxSpringBehavior on top_left_radius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
+        FxSpringBehavior on top_right_radius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
+        FxSpringBehavior on bottom_left_radius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
+        FxSpringBehavior on bottom_right_radius { springToken: container_specs.springToken ?? FxStyle.tokens.sys.motion.spring.fast.spatial }
     }
 }

@@ -126,8 +126,6 @@ Item {
     Rectangle {
         id: shape
 
-        property bool fullCorner: root.shapeToken === FxStyle.tokens.sys.shape.corner.full
-
         z: 0
         anchors.fill: parent
 
