@@ -46,181 +46,195 @@ T.Button {
     readonly property bool hasIcon: iconName.length > 0
     readonly property bool iconOnly: hasIcon && (root.text.length <= 0)
 
+    // Functions.
+
+    // This function is necessary and will be overridden in derived QML types to adjust the type of the token.
+    function getMeasurementToken() : FxButtonMeasurementToken {
+        switch (root.buttonSize) {
+            case FxExpressiveButton.Size.ExtraSmall:
+                return FxStyle.tokens.comp.button.size.extraSmall;
+            case FxExpressiveButton.Size.Small:
+                return FxStyle.tokens.comp.button.size.small;
+            case FxExpressiveButton.Size.Medium:
+                return FxStyle.tokens.comp.button.size.medium;
+            case FxExpressiveButton.Size.Large:
+                return FxStyle.tokens.comp.button.size.large;
+            case FxExpressiveButton.Size.ExtraLarge:
+                return FxStyle.tokens.comp.button.size.extraLarge;
+            default:
+                return FxStyle.tokens.comp.button.size.small;
+        }
+    }
+
+    // This function is necessary and will be overridden in derived QML types to adjust the type of the token.
+    function getVariantToken() : FxButtonVariantToken {
+        switch (root.buttonColor) {
+            case FxExpressiveButton.Color.Elevated:
+                return FxStyle.tokens.comp.button.color.elevated;
+            case FxExpressiveButton.Color.Filled:
+                return FxStyle.tokens.comp.button.color.filled;
+            case FxExpressiveButton.Color.Tonal:
+                return FxStyle.tokens.comp.button.color.tonal;
+            case FxExpressiveButton.Color.Outlined:
+                return FxStyle.tokens.comp.button.color.outlined;
+            case FxExpressiveButton.Color.Text:
+                return FxStyle.tokens.comp.button.color.text;
+            default:
+                return FxStyle.tokens.comp.button.color.tonal;
+        }
+    }
+
+    // Property type of var is used to allow derived QML types to adjust its measurement token type.
+    //  e.g., FxExpressiveButton uses measurement token type of FxButtonMeasurementToken,
+    //  while FxExpressiveIconButton uses measurement token type of FxIconButtonMeasurementToken
+    readonly property var measurementToken: root.getMeasurementToken();
+
+    // Property type of var is used to allow derived QML types to adjust its variant token type.
+    readonly property var variantToken: root.getVariantToken();
+
+    // Private properties.
+
     QtObject {
         id: _
 
-        readonly property FxButtonMeasurementToken measurementToken: {
-            switch (root.buttonSize) {
-                case FxExpressiveButton.Size.ExtraSmall:
-                    return FxStyle.tokens.comp.button.size.extraSmall;
-                case FxExpressiveButton.Size.Small:
-                    return FxStyle.tokens.comp.button.size.small;
-                case FxExpressiveButton.Size.Medium:
-                    return FxStyle.tokens.comp.button.size.medium;
-                case FxExpressiveButton.Size.Large:
-                    return FxStyle.tokens.comp.button.size.large;
-                case FxExpressiveButton.Size.ExtraLarge:
-                    return FxStyle.tokens.comp.button.size.extraLarge;
-                default:
-                    return FxStyle.tokens.comp.button.size.small;
-            }
-        }
-
-        readonly property FxButtonVariantToken variantToken: {
-            switch (root.buttonColor) {
-                case FxExpressiveButton.Color.Elevated:
-                    return FxStyle.tokens.comp.button.color.elevated;
-                case FxExpressiveButton.Color.Filled:
-                    return FxStyle.tokens.comp.button.color.filled;
-                case FxExpressiveButton.Color.Tonal:
-                    return FxStyle.tokens.comp.button.color.tonal;
-                case FxExpressiveButton.Color.Outlined:
-                    return FxStyle.tokens.comp.button.color.outlined;
-                case FxExpressiveButton.Color.Text:
-                    return FxStyle.tokens.comp.button.color.text;
-                default:
-                    return FxStyle.tokens.comp.button.color.tonal;
-            }
-        }
-
         readonly property FxShapeToken containerShape: (root.buttonShape == FxExpressiveButton.Shape.Square) ?
-                                                           _.measurementToken.shape.square :
-                                                           _.measurementToken.shape.round
+                                                           root.measurementToken.shape.square :
+                                                           root.measurementToken.shape.round
 
         readonly property FxShapeToken selectedContainerShape: (root.buttonShape == FxExpressiveButton.Shape.Square) ?
-                                                                   _.measurementToken.selectedContainerShape.square :
-                                                                   _.measurementToken.selectedContainerShape.round
+                                                                   root.measurementToken.selectedContainerShape.square :
+                                                                   root.measurementToken.selectedContainerShape.round
 
         readonly property FxShapeToken containerNormalShape: root.checkable && root.checked
                                      ? _.selectedContainerShape
                                      : _.containerShape
 
         readonly property FxShapeToken containerPressedMorph: root.checkable
-                                     ? _.measurementToken.selectedContainerShape.pressedMorph
-                                     : _.measurementToken.shape.pressedMorph
+                                     ? root.measurementToken.selectedContainerShape.pressedMorph
+                                     : root.measurementToken.shape.pressedMorph
 
-        readonly property real containerHeigth: measurementToken.height
-        readonly property real leadingPadding: root.iconOnly ? 0 : measurementToken.space.leading
-        readonly property real trailingPadding: root.iconOnly ? 0 : measurementToken.space.trailing
+        readonly property real containerHeigth: root.measurementToken.height
+        readonly property real leadingPadding: root.measurementToken.space.leading
+        readonly property real trailingPadding: root.measurementToken.space.trailing
 
         readonly property color containerColor_enabled: root.checkable ? (root.checked ?
-                                                                              _.variantToken.enabled.container.color_toggle_selected :
-                                                                              _.variantToken.enabled.container.color_toggle_unselected):
-                                                                         _.variantToken.enabled.container.color
+                                                                              root.variantToken.enabled.container.color_toggle_selected :
+                                                                              root.variantToken.enabled.container.color_toggle_unselected):
+                                                                         root.variantToken.enabled.container.color
 
         readonly property color containerOutlineColor_enabled: root.checkable ? (root.checked ?
-                                                                                     _.variantToken.enabled.outline.color_toggle_selected :
-                                                                                     _.variantToken.enabled.outline.color_toggle_unselected):
-                                                                                _.variantToken.enabled.outline.color
+                                                                                     root.variantToken.enabled.outline.color_toggle_selected :
+                                                                                     root.variantToken.enabled.outline.color_toggle_unselected):
+                                                                                root.variantToken.enabled.outline.color
 
         readonly property color containerColor_disabled: root.checkable ? (root.checked ?
-                                                                               _.variantToken.disabled.container.color_toggle_selected :
-                                                                               _.variantToken.disabled.container.color_toggle_unselected):
-                                                                          _.variantToken.disabled.container.color
+                                                                               root.variantToken.disabled.container.color_toggle_selected :
+                                                                               root.variantToken.disabled.container.color_toggle_unselected):
+                                                                          root.variantToken.disabled.container.color
 
         readonly property color containerOutlineColor_disabled: root.checkable ? (root.checked ?
-                                                                                      _.variantToken.disabled.outline.color_toggle_selected :
-                                                                                      _.variantToken.disabled.outline.color_toggle_unselected):
-                                                                                 _.variantToken.disabled.outline.color
+                                                                                      root.variantToken.disabled.outline.color_toggle_selected :
+                                                                                      root.variantToken.disabled.outline.color_toggle_unselected):
+                                                                                 root.variantToken.disabled.outline.color
 
         readonly property color containerColor_hovered: root.checkable ? (root.checked ?
-                                                                              _.variantToken.hovered.container.color_toggle_selected :
-                                                                              _.variantToken.hovered.container.color_toggle_unselected):
-                                                                         _.variantToken.hovered.container.color
+                                                                              root.variantToken.hovered.container.color_toggle_selected :
+                                                                              root.variantToken.hovered.container.color_toggle_unselected):
+                                                                         root.variantToken.hovered.container.color
 
         readonly property color containerOutlineColor_hovered: root.checkable ? (root.checked ?
-                                                                                     _.variantToken.hovered.outline.color_toggle_selected :
-                                                                                     _.variantToken.hovered.outline.color_toggle_unselected):
-                                                                                _.variantToken.hovered.outline.color
+                                                                                     root.variantToken.hovered.outline.color_toggle_selected :
+                                                                                     root.variantToken.hovered.outline.color_toggle_unselected):
+                                                                                root.variantToken.hovered.outline.color
 
         readonly property color containerColor_focused: root.checkable ? (root.checked ?
-                                                                              _.variantToken.focused.container.color_toggle_selected :
-                                                                              _.variantToken.focused.container.color_toggle_unselected):
-                                                                         _.variantToken.focused.container.color
+                                                                              root.variantToken.focused.container.color_toggle_selected :
+                                                                              root.variantToken.focused.container.color_toggle_unselected):
+                                                                         root.variantToken.focused.container.color
 
         readonly property color containerOutlineColor_focused: root.checkable ? (root.checked ?
-                                                                                     _.variantToken.focused.outline.color_toggle_selected :
-                                                                                     _.variantToken.focused.outline.color_toggle_unselected):
-                                                                                _.variantToken.focused.outline.color
+                                                                                     root.variantToken.focused.outline.color_toggle_selected :
+                                                                                     root.variantToken.focused.outline.color_toggle_unselected):
+                                                                                root.variantToken.focused.outline.color
 
         readonly property color containerColor_pressed: root.checkable ? (root.checked ?
-                                                                              _.variantToken.pressed.container.color_toggle_selected :
-                                                                              _.variantToken.pressed.container.color_toggle_unselected):
-                                                                         _.variantToken.pressed.container.color
+                                                                              root.variantToken.pressed.container.color_toggle_selected :
+                                                                              root.variantToken.pressed.container.color_toggle_unselected):
+                                                                         root.variantToken.pressed.container.color
 
         readonly property color containerOutlineColor_pressed: root.checkable ? (root.checked ?
-                                                                                     _.variantToken.pressed.outline.color_toggle_selected :
-                                                                                     _.variantToken.pressed.outline.color_toggle_unselected):
-                                                                                _.variantToken.pressed.outline.color
+                                                                                     root.variantToken.pressed.outline.color_toggle_selected :
+                                                                                     root.variantToken.pressed.outline.color_toggle_unselected):
+                                                                                root.variantToken.pressed.outline.color
 
         // Label colors.
 
         readonly property color labelColor_enabled: root.checkable ? (root.checked ?
-                                                                          _.variantToken.enabled.label.color_toggle_selected :
-                                                                          _.variantToken.enabled.label.color_toggle_unselected):
-                                                                     _.variantToken.enabled.label.color
+                                                                          root.variantToken.enabled.label.color_toggle_selected :
+                                                                          root.variantToken.enabled.label.color_toggle_unselected):
+                                                                     root.variantToken.enabled.label.color
         readonly property color labelColor_disabled: root.checkable ? (root.checked ?
-                                                                           _.variantToken.disabled.label.color_toggle_selected :
-                                                                           _.variantToken.disabled.label.color_toggle_unselected):
-                                                                      _.variantToken.disabled.label.color
+                                                                           root.variantToken.disabled.label.color_toggle_selected :
+                                                                           root.variantToken.disabled.label.color_toggle_unselected):
+                                                                      root.variantToken.disabled.label.color
         readonly property color labelColor_hovered: root.checkable ? (root.checked ?
-                                                                          _.variantToken.hovered.label.color_toggle_selected :
-                                                                          _.variantToken.hovered.label.color_toggle_unselected):
-                                                                     _.variantToken.hovered.label.color
+                                                                          root.variantToken.hovered.label.color_toggle_selected :
+                                                                          root.variantToken.hovered.label.color_toggle_unselected):
+                                                                     root.variantToken.hovered.label.color
         readonly property color labelColor_focused: root.checkable ? (root.checked ?
-                                                                          _.variantToken.focused.label.color_toggle_selected :
-                                                                          _.variantToken.focused.label.color_toggle_unselected):
-                                                                     _.variantToken.focused.label.color
+                                                                          root.variantToken.focused.label.color_toggle_selected :
+                                                                          root.variantToken.focused.label.color_toggle_unselected):
+                                                                     root.variantToken.focused.label.color
         readonly property color labelColor_pressed: root.checkable ? (root.checked ?
-                                                                          _.variantToken.pressed.label.color_toggle_selected :
-                                                                          _.variantToken.pressed.label.color_toggle_unselected):
-                                                                     _.variantToken.pressed.label.color
+                                                                          root.variantToken.pressed.label.color_toggle_selected :
+                                                                          root.variantToken.pressed.label.color_toggle_unselected):
+                                                                     root.variantToken.pressed.label.color
 
         // Icon colors.
 
         readonly property color iconColor_enabled: root.checkable ? (root.checked ?
-                                                                         _.variantToken.enabled.icon.color_toggle_selected :
-                                                                         _.variantToken.enabled.icon.color_toggle_unselected):
-                                                                    _.variantToken.enabled.icon.color
+                                                                         root.variantToken.enabled.icon.color_toggle_selected :
+                                                                         root.variantToken.enabled.icon.color_toggle_unselected):
+                                                                    root.variantToken.enabled.icon.color
         readonly property color iconColor_disabled: root.checkable ? (root.checked ?
-                                                                          _.variantToken.disabled.icon.color_toggle_selected :
-                                                                          _.variantToken.disabled.icon.color_toggle_unselected):
-                                                                     _.variantToken.disabled.icon.color
+                                                                          root.variantToken.disabled.icon.color_toggle_selected :
+                                                                          root.variantToken.disabled.icon.color_toggle_unselected):
+                                                                     root.variantToken.disabled.icon.color
         readonly property color iconColor_hovered: root.checkable ? (root.checked ?
-                                                                         _.variantToken.hovered.icon.color_toggle_selected :
-                                                                         _.variantToken.hovered.icon.color_toggle_unselected):
-                                                                    _.variantToken.hovered.icon.color
+                                                                         root.variantToken.hovered.icon.color_toggle_selected :
+                                                                         root.variantToken.hovered.icon.color_toggle_unselected):
+                                                                    root.variantToken.hovered.icon.color
         readonly property color iconColor_focused: root.checkable ? (root.checked ?
-                                                                         _.variantToken.focused.icon.color_toggle_selected :
-                                                                         _.variantToken.focused.icon.color_toggle_unselected):
-                                                                    _.variantToken.focused.icon.color
+                                                                         root.variantToken.focused.icon.color_toggle_selected :
+                                                                         root.variantToken.focused.icon.color_toggle_unselected):
+                                                                    root.variantToken.focused.icon.color
         readonly property color iconColor_pressed: root.checkable ? (root.checked ?
-                                                                         _.variantToken.pressed.icon.color_toggle_selected :
-                                                                         _.variantToken.pressed.icon.color_toggle_unselected):
-                                                                    _.variantToken.pressed.icon.color
+                                                                         root.variantToken.pressed.icon.color_toggle_selected :
+                                                                         root.variantToken.pressed.icon.color_toggle_unselected):
+                                                                    root.variantToken.pressed.icon.color
 
         // State layer colors.
 
         readonly property color stateLayerColor_enabled: root.checkable ? (root.checked ?
-                                                                               _.variantToken.enabled.container.stateLayer.color_toggle_selected :
-                                                                               _.variantToken.enabled.container.stateLayer.color_toggle_unselected):
-                                                                          _.variantToken.enabled.container.stateLayer.color
+                                                                               root.variantToken.enabled.container.stateLayer.color_toggle_selected :
+                                                                               root.variantToken.enabled.container.stateLayer.color_toggle_unselected):
+                                                                          root.variantToken.enabled.container.stateLayer.color
         readonly property color stateLayerColor_disabled: root.checkable ? (root.checked ?
-                                                                                _.variantToken.disabled.container.stateLayer.color_toggle_selected :
-                                                                                _.variantToken.disabled.container.stateLayer.color_toggle_unselected):
-                                                                           _.variantToken.disabled.container.stateLayer.color
+                                                                                root.variantToken.disabled.container.stateLayer.color_toggle_selected :
+                                                                                root.variantToken.disabled.container.stateLayer.color_toggle_unselected):
+                                                                           root.variantToken.disabled.container.stateLayer.color
         readonly property color stateLayerColor_hovered: root.checkable ? (root.checked ?
-                                                                               _.variantToken.hovered.container.stateLayer.color_toggle_selected :
-                                                                               _.variantToken.hovered.container.stateLayer.color_toggle_unselected):
-                                                                          _.variantToken.hovered.container.stateLayer.color
+                                                                               root.variantToken.hovered.container.stateLayer.color_toggle_selected :
+                                                                               root.variantToken.hovered.container.stateLayer.color_toggle_unselected):
+                                                                          root.variantToken.hovered.container.stateLayer.color
         readonly property color stateLayerColor_focused: root.checkable ? (root.checked ?
-                                                                               _.variantToken.focused.container.stateLayer.color_toggle_selected :
-                                                                               _.variantToken.focused.container.stateLayer.color_toggle_unselected):
-                                                                          _.variantToken.focused.container.stateLayer.color
+                                                                               root.variantToken.focused.container.stateLayer.color_toggle_selected :
+                                                                               root.variantToken.focused.container.stateLayer.color_toggle_unselected):
+                                                                          root.variantToken.focused.container.stateLayer.color
         readonly property color stateLayerColor_pressed: root.checkable ? (root.checked ?
-                                                                               _.variantToken.pressed.container.stateLayer.color_toggle_selected :
-                                                                               _.variantToken.pressed.container.stateLayer.color_toggle_unselected):
-                                                                          _.variantToken.pressed.container.stateLayer.color
+                                                                               root.variantToken.pressed.container.stateLayer.color_toggle_selected :
+                                                                               root.variantToken.pressed.container.stateLayer.color_toggle_unselected):
+                                                                          root.variantToken.pressed.container.stateLayer.color
     }
 
     // Object properties.
@@ -231,11 +245,13 @@ T.Button {
     rightPadding: _.trailingPadding
 
     height: _.containerHeigth
-    width: _.leadingPadding + contentItem.implicitWidth + _.trailingPadding
+    width: root.leftPadding + contentItem.implicitWidth + root.rightPadding
 
     font: label_text_specs.typeScaleToken.font
 
     background: container
+
+    // Child objects.
 
     FxInteractionState {
         id: interaction_state
@@ -248,100 +264,100 @@ T.Button {
         state: interaction_state.state
         containerSpecs.springToken: FxStyle.tokens.sys.motion.spring.fast.spatial
         containerSpecs.shapeToken: interaction_state.isPressed ? _.containerPressedMorph : _.containerNormalShape
-        containerSpecs.outlineWidth.defaultValue: _.measurementToken.outlineWidth
+        containerSpecs.outlineWidth.defaultValue: root.measurementToken.outlineWidth
 
-        containerSpecs.elevation.enabled: _.variantToken.enabled.container.elevation
-        containerSpecs.opacity.enabled: _.variantToken.enabled.container.opacity
+        containerSpecs.elevation.enabled: root.variantToken.enabled.container.elevation
+        containerSpecs.opacity.enabled: root.variantToken.enabled.container.opacity
         containerSpecs.color.enabled: _.containerColor_enabled
         containerSpecs.outlineColor.enabled: _.containerOutlineColor_enabled
 
-        containerSpecs.elevation.disabled: _.variantToken.disabled.container.elevation
-        containerSpecs.opacity.disabled: _.variantToken.disabled.container.opacity
+        containerSpecs.elevation.disabled: root.variantToken.disabled.container.elevation
+        containerSpecs.opacity.disabled: root.variantToken.disabled.container.opacity
         containerSpecs.color.disabled: _.containerColor_disabled
         containerSpecs.outlineColor.disabled: _.containerOutlineColor_disabled
 
-        containerSpecs.elevation.hovered: _.variantToken.hovered.container.elevation
-        containerSpecs.opacity.hovered: _.variantToken.hovered.container.opacity
+        containerSpecs.elevation.hovered: root.variantToken.hovered.container.elevation
+        containerSpecs.opacity.hovered: root.variantToken.hovered.container.opacity
         containerSpecs.color.hovered: _.containerColor_hovered
         containerSpecs.outlineColor.hovered: _.containerOutlineColor_hovered
 
-        containerSpecs.elevation.focused: _.variantToken.focused.container.elevation
-        containerSpecs.opacity.focused: _.variantToken.focused.container.opacity
+        containerSpecs.elevation.focused: root.variantToken.focused.container.elevation
+        containerSpecs.opacity.focused: root.variantToken.focused.container.opacity
         containerSpecs.color.focused: _.containerColor_focused
         containerSpecs.outlineColor.focused: _.containerOutlineColor_focused
 
-        containerSpecs.elevation.pressed: _.variantToken.pressed.container.elevation
-        containerSpecs.opacity.pressed: _.variantToken.pressed.container.opacity
+        containerSpecs.elevation.pressed: root.variantToken.pressed.container.elevation
+        containerSpecs.opacity.pressed: root.variantToken.pressed.container.opacity
         containerSpecs.color.pressed: _.containerColor_pressed
         containerSpecs.outlineColor.pressed: _.containerOutlineColor_pressed
 
-        stateLayerSpecs.opacity.enabled: _.variantToken.enabled.container.stateLayer.opacity
+        stateLayerSpecs.opacity.enabled: root.variantToken.enabled.container.stateLayer.opacity
         stateLayerSpecs.color.enabled: _.stateLayerColor_enabled
 
-        stateLayerSpecs.opacity.disabled: _.variantToken.disabled.container.stateLayer.opacity
+        stateLayerSpecs.opacity.disabled: root.variantToken.disabled.container.stateLayer.opacity
         stateLayerSpecs.color.disabled: _.stateLayerColor_disabled
 
-        stateLayerSpecs.opacity.hovered: _.variantToken.hovered.container.stateLayer.opacity
+        stateLayerSpecs.opacity.hovered: root.variantToken.hovered.container.stateLayer.opacity
         stateLayerSpecs.color.hovered: _.stateLayerColor_hovered
 
-        stateLayerSpecs.opacity.focused: _.variantToken.focused.container.stateLayer.opacity
+        stateLayerSpecs.opacity.focused: root.variantToken.focused.container.stateLayer.opacity
         stateLayerSpecs.color.focused: _.stateLayerColor_focused
 
-        stateLayerSpecs.opacity.pressed: _.variantToken.pressed.container.stateLayer.opacity
+        stateLayerSpecs.opacity.pressed: root.variantToken.pressed.container.stateLayer.opacity
         stateLayerSpecs.color.pressed: _.stateLayerColor_pressed
     }
 
     FxTextSpecification {
         id: label_text_specs
         state: interaction_state.state
-        typeScaleToken: _.measurementToken.typeScaleToken
+        typeScaleToken: root.measurementToken.typeScaleToken
 
-        opacity.enabled: _.variantToken.enabled.label.opacity
+        opacity.enabled: root.variantToken.enabled.label.opacity
         color.enabled: _.labelColor_enabled
 
-        opacity.disabled: _.variantToken.disabled.label.opacity
+        opacity.disabled: root.variantToken.disabled.label.opacity
         color.disabled: _.labelColor_disabled
 
-        opacity.hovered: _.variantToken.hovered.label.opacity
+        opacity.hovered: root.variantToken.hovered.label.opacity
         color.hovered: _.labelColor_hovered
 
-        opacity.focused: _.variantToken.focused.label.opacity
+        opacity.focused: root.variantToken.focused.label.opacity
         color.focused: _.labelColor_focused
 
-        opacity.pressed: _.variantToken.pressed.label.opacity
+        opacity.pressed: root.variantToken.pressed.label.opacity
         color.pressed: _.labelColor_pressed
     }
 
     FxTextSpecification {
         id: icon_text_specs
         state: interaction_state.state
-        typeScaleToken: _.measurementToken.typeScaleToken
+        typeScaleToken: root.measurementToken.typeScaleToken
 
-        opacity.enabled: _.variantToken.enabled.icon.opacity
+        opacity.enabled: root.variantToken.enabled.icon.opacity
         color.enabled: _.iconColor_enabled
 
-        opacity.disabled: _.variantToken.disabled.icon.opacity
+        opacity.disabled: root.variantToken.disabled.icon.opacity
         color.disabled: _.iconColor_disabled
 
-        opacity.hovered: _.variantToken.hovered.icon.opacity
+        opacity.hovered: root.variantToken.hovered.icon.opacity
         color.hovered: _.iconColor_hovered
 
-        opacity.focused: _.variantToken.focused.icon.opacity
+        opacity.focused: root.variantToken.focused.icon.opacity
         color.focused: _.iconColor_focused
 
-        opacity.pressed: _.variantToken.pressed.icon.opacity
+        opacity.pressed: root.variantToken.pressed.icon.opacity
         color.pressed: _.iconColor_pressed
     }
 
     contentItem: Item {
 
         implicitHeight: _.containerHeigth
-        implicitWidth: root.iconOnly ? _.containerHeigth : button_content.implicitWidth
+        implicitWidth: button_content.implicitWidth
         anchors.centerIn: root
 
         Row {
             id: button_content
-            spacing: _.measurementToken.space.inner
+            spacing: root.measurementToken.space.inner
 
             height: parent.implicitHeight
 
@@ -359,7 +375,7 @@ T.Button {
                         name: root.iconName
                         color: icon_text_specs.color.value
                         opacity: icon_text_specs.opacity.value
-                        fontSize: _.measurementToken.iconSize
+                        fontSize: root.measurementToken.iconSize
 
                         width: fontSize
                         height: fontSize

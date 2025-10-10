@@ -136,7 +136,7 @@ qt_add_qml_module(Fluxion
         Controls/FxExpressiveButton.qml
         Controls/FxFilledButton.qml
         Controls/FxFilledTextField.qml
-        Controls/FxIcon.qml
+        Controls/FxIconButton.qml
         Controls/FxInteractionState.qml
         Controls/FxLabel.qml
         Controls/FxListItem.qml
