@@ -106,10 +106,10 @@ Drawer {
                 Layout.alignment: Qt.AlignVCenter
                 Layout.margins: -8
 
-                sourceComponent: FxTextButton {
+                sourceComponent: FxIconButton {
                     id: back_button
                     iconName: "arrow-left"
-                    isStandard: true
+                    buttonColor: FxExpressiveButton.Color.Text
 
                     onClicked: root.backButtonClicked();
                 }
@@ -169,10 +169,10 @@ Drawer {
                 Layout.alignment: Qt.AlignVCenter
                 Layout.margins: -8
 
-                sourceComponent: FxTextButton {
+                sourceComponent: FxIconButton {
                     id: close_button
                     iconName: "close"
-                    isStandard: true
+                    buttonColor: FxExpressiveButton.Color.Text
 
                     onClicked: root.closeButtonClicked();
                 }
