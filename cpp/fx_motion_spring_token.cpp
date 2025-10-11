@@ -25,7 +25,7 @@ qreal FxMotionSpringToken::dampingForAnimation()
     // Damping must be adjusted for Qt6 QML SpringAnimation.
     // This formula is empirical through trials & errors.
 
-    qreal animation_damping = (0.25 * damping_);
+    qreal animation_damping = (0.25 * damping_) + 0.075;
 
     return std::clamp(animation_damping, 0.0, 1.0);
 }

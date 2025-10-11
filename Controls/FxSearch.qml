@@ -102,9 +102,10 @@ Item {
             to: "full_view"
             ParentAnimation {
                 AnchorAnimation { duration: FxStyle.tokens.sys.motion.duration.medium2; easing.type: FxStyle.tokens.sys.motion.easing.emphasized }
-                SmoothedAnimation {
+                SpringAnimation {
                     properties: "anchors.bottomMargin,anchors.leftMargin,anchors.rightMargin,anchors.topMargin,anchors.margins"
-                    velocity: -1; duration: FxStyle.tokens.sys.motion.duration.medium2; easing.type: FxStyle.tokens.sys.motion.easing.emphasized
+                    damping: FxStyle.tokens.sys.motion.spring.defaults.effects.dampingForAnimation
+                    spring: FxStyle.tokens.sys.motion.spring.defaults.effects.stiffnessForAnimation
                 }
             }
             onRunningChanged: {
@@ -119,9 +120,10 @@ Item {
             ParentAnimation {
                 via: root
                 AnchorAnimation { duration: FxStyle.tokens.sys.motion.duration.short4 ; easing.type: FxStyle.tokens.sys.motion.easing.emphasized }
-                SmoothedAnimation {
+                SpringAnimation {
                     properties: "anchors.bottomMargin,anchors.leftMargin,anchors.rightMargin,anchors.topMargin,anchors.margins"
-                    velocity: -1; duration: FxStyle.tokens.sys.motion.duration.short4; easing.type: FxStyle.tokens.sys.motion.easing.emphasized
+                    damping: FxStyle.tokens.sys.motion.spring.defaults.effects.dampingForAnimation
+                    spring: FxStyle.tokens.sys.motion.spring.defaults.effects.stiffnessForAnimation
                 }
             }
             onRunningChanged: {

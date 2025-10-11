@@ -16,10 +16,7 @@ Drawer {
     property string headlineText: "Title"
     property Component headlineTrailingItem
 
-    property real enterDuration: FxStyle.tokens.sys.motion.duration.medium2
-    property int enterEasing: FxStyle.tokens.sys.motion.easing.emphasized_decelerate
-    property real exitDuration: FxStyle.tokens.sys.motion.duration.short4
-    property int exitEasing: FxStyle.tokens.sys.motion.easing.emphasized
+    property FxMotionSpringToken springToken: FxStyle.tokens.sys.motion.spring.defaults.spatial
 
     property bool headlineShown: true
     property bool headlineModalOpened: false
@@ -56,18 +53,16 @@ Drawer {
     interactive: false
 
     enter: Transition {
-        SmoothedAnimation {
-            velocity: -1
-            duration: root.enterDuration
-            easing.type: root.enterEasing
+        SpringAnimation {
+            damping: root.springToken.dampingForAnimation
+            spring: root.springToken.stiffnessForAnimation
         }
     }
 
     exit: Transition {
-        SmoothedAnimation {
-            velocity: -1
-            duration: root.exitDuration
-            easing.type: root.exitEasing
+        SpringAnimation {
+            damping: root.springToken.dampingForAnimation
+            spring: root.springToken.stiffnessForAnimation
         }
     }
 

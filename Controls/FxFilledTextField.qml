@@ -69,22 +69,12 @@ FxTextField {
             id: active_line
             color: active_indicator.color
 
-            x: root.activeFocus ? 0 : parent.width / 2
+            x: (parent.width - width) * 0.5
             width: root.activeFocus ? parent.width : 0
             height: 3
             anchors { bottom: parent.bottom }
 
-            Behavior on width { SmoothedAnimation {
-                    velocity: -1;
-                    easing.type: FxStyle.tokens.sys.motion.easing.emphasized;
-                    duration: FxStyle.tokens.sys.motion.duration.short3
-                } }
-
-            Behavior on x { SmoothedAnimation {
-                    velocity: -1;
-                    easing.type: FxStyle.tokens.sys.motion.easing.emphasized;
-                    duration: FxStyle.tokens.sys.motion.duration.short3
-                } }
+            FxSpringBehavior on width { springToken: FxStyle.tokens.sys.motion.spring.fast.spatial }
         }
     }
 
@@ -99,21 +89,10 @@ FxTextField {
         y: root.isPopulated ? root.private_.topPadding :
                               (_.implicitHeight - (root.allowSupportingRow ? root.private_.supportingLineHeight : 0) - root.private_.emptyLabelLineHeight) * 0.5
 
-        Behavior on y {
-            SmoothedAnimation {
-                velocity: -1;
-                easing.type: FxStyle.tokens.sys.motion.easing.emphasized;
-                duration: FxStyle.tokens.sys.motion.duration.short3
-            }
-        }
+        FxSpringBehavior on y { springToken: FxStyle.tokens.sys.motion.spring.fast.spatial }
 
 
-        font { Behavior on pixelSize { SmoothedAnimation {
-                    velocity: -1;
-                    easing.type: FxStyle.tokens.sys.motion.easing.emphasized;
-                    duration: FxStyle.tokens.sys.motion.duration.short3
-                } }
-        }
+        font { FxSpringBehavior on pixelSize { springtoken: FxStyle.tokens.sys.motion.spring.fast.effects } }
 
     }
 }

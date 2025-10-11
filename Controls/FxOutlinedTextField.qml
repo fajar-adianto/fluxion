@@ -88,22 +88,10 @@ FxTextField {
                 x: root.private_.containerLeftPadding + (root.isPopulated ? 0 : (shape_path.paddedLabelWidth * 0.5))
                 y: 0
 
-                Behavior on x {
-                    SmoothedAnimation {
-                        velocity: -1;
-                        easing.type: FxStyle.tokens.sys.motion.easing.emphasized;
-                        duration: FxStyle.tokens.sys.motion.duration.short3
-                    }
-                }
+                FxSpringBehavior on x { springToken: FxStyle.tokens.sys.motion.spring.fast.spatial }
             }
 
-            Behavior on startX {
-                SmoothedAnimation {
-                    velocity: -1;
-                    easing.type: FxStyle.tokens.sys.motion.easing.emphasized;
-                    duration: FxStyle.tokens.sys.motion.duration.short3
-                }
-            }
+            FxSpringBehavior on startX { springToken: FxStyle.tokens.sys.motion.spring.fast.spatial }
         }
     }
 
@@ -117,28 +105,11 @@ FxTextField {
         x: root.isPopulated ? (root.private_.containerLeftPadding + 4) : root.private_.implicitLeftPadding
         y: root.isPopulated ? 0 : _.topInset + (_.containerHeight - root.private_.emptyLabelLineHeight) * 0.5
 
-        Behavior on x {
-            SmoothedAnimation {
-                velocity: -1;
-                easing.type: FxStyle.tokens.sys.motion.easing.emphasized;
-                duration: FxStyle.tokens.sys.motion.duration.short3
-            }
-        }
+        FxSpringBehavior on x { springToken: FxStyle.tokens.sys.motion.spring.fast.effects }
 
-        Behavior on y {
-            SmoothedAnimation {
-                velocity: -1;
-                easing.type: FxStyle.tokens.sys.motion.easing.emphasized;
-                duration: FxStyle.tokens.sys.motion.duration.short3
-            }
-        }
+        FxSpringBehavior on y { springToken: FxStyle.tokens.sys.motion.spring.fast.effects }
 
-        font { Behavior on pixelSize { SmoothedAnimation {
-                    velocity: -1;
-                    easing.type: FxStyle.tokens.sys.motion.easing.emphasized;
-                    duration: FxStyle.tokens.sys.motion.duration.short3
-                } }
-        }
+        font { FxSpringBehavior on pixelSize { springToken: FxStyle.tokens.sys.motion.spring.fast.effects } }
 
     }
 
