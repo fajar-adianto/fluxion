@@ -104,6 +104,8 @@ Drawer {
                 visible: active
 
                 Layout.alignment: Qt.AlignVCenter
+                Layout.minimumWidth: item && "implicitWidth" in item ? item.implicitWidth : 0
+                Layout.preferredWidth: item && "implicitWidth" in item ? item.implicitWidth : 0
 
                 sourceComponent: FxIconButton {
                     id: back_button
@@ -166,6 +168,8 @@ Drawer {
                 visible: active
 
                 Layout.alignment: Qt.AlignVCenter
+                Layout.minimumWidth: item && "implicitWidth" in item ? item.implicitWidth : 0
+                Layout.preferredWidth: item && "implicitWidth" in item ? item.implicitWidth : 0
 
                 sourceComponent: FxIconButton {
                     id: close_button
