@@ -104,7 +104,6 @@ Drawer {
                 visible: active
 
                 Layout.alignment: Qt.AlignVCenter
-                Layout.margins: -8
 
                 sourceComponent: FxIconButton {
                     id: back_button
@@ -167,7 +166,6 @@ Drawer {
                 visible: active
 
                 Layout.alignment: Qt.AlignVCenter
-                Layout.margins: -8
 
                 sourceComponent: FxIconButton {
                     id: close_button
