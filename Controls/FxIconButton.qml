@@ -70,6 +70,8 @@ FxExpressiveButton {
                     return root.measurementToken.space_narrow.leading;
                 case FxIconButton.Width.Wide:
                     return root.measurementToken.space_wide.leading;
+                default:
+                    return root.measurementToken.space_default.leading;
             }
         }
 
@@ -81,6 +83,8 @@ FxExpressiveButton {
                     return root.measurementToken.space_narrow.trailing;
                 case FxIconButton.Width.Wide:
                     return root.measurementToken.space_wide.trailing;
+                default:
+                    return root.measurementToken.space_default.trailing;
             }
         }
     }
