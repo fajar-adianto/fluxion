@@ -244,6 +244,9 @@ T.Button {
     leftPadding: _.leadingPadding
     rightPadding: _.trailingPadding
 
+    implicitHeight: _.containerHeigth
+    implicitWidth: root.leftPadding + contentItem.implicitWidth + root.rightPadding
+
     height: _.containerHeigth
     width: root.leftPadding + contentItem.implicitWidth + root.rightPadding
 
