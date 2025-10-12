@@ -213,9 +213,9 @@ Item {
 
                 Component {
                     id: back_button
-                    FxTextButton {
+                    FxIconButton {
                         iconName: "arrow-left"
-                        isStandard: true
+                        buttonColor: FxIconButton.Color.Standard
 
                         onClicked: {
                             _.isActive = false;
@@ -237,9 +237,9 @@ Item {
 
                 Component {
                     id: leading_button_component
-                    FxTextButton {
+                    FxIconButton {
                         iconName: root.leadingIcon.name
-                        isStandard: true
+                        buttonColor: FxIconButton.Color.Standard
 
                         onClicked: root.leadingButtonClicked();
                     }
@@ -305,9 +305,9 @@ Item {
                 Layout.margins: (_.iconSize - _.buttonSize) * 0.5
 
                 sourceComponent: Component {
-                    FxTextButton {
+                    FxIconButton {
                         iconName: root.actionButtons.primaryIconName ?? ""
-                        isStandard: true
+                        buttonColor: FxIconButton.Color.Standard
 
                         onClicked: root.primaryActionButtonClicked();
                     }
@@ -335,9 +335,9 @@ Item {
                 Layout.margins: ((withAvatar ? _.avatarSize : _.iconSize) - _.buttonSize) * 0.5
 
                 sourceComponent: Component {
-                    FxTextButton {
+                    FxIconButton {
                         iconName: root.actionButtons.secondaryIconName ?? ""
-                        isStandard: true
+                        buttonColor: FxIconButton.Color.Standard
                         containerSpecs.shapeToken: secondary_action_button.withAvatar ? root.avatar.shapeToken : FxStyle.tokens.sys.shape.corner.full
 
                         onClicked: root.secondaryActionButtonClicked();

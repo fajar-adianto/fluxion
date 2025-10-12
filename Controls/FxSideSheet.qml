@@ -105,7 +105,7 @@ Drawer {
                 sourceComponent: FxIconButton {
                     id: back_button
                     iconName: "arrow-left"
-                    buttonColor: FxExpressiveButton.Color.Text
+                    buttonColor: FxIconButton.Color.Standard
 
                     onClicked: root.backButtonClicked();
                 }
@@ -169,7 +169,7 @@ Drawer {
                 sourceComponent: FxIconButton {
                     id: close_button
                     iconName: "close"
-                    buttonColor: FxExpressiveButton.Color.Text
+                    buttonColor: FxIconButton.Color.Standard
 
                     onClicked: root.closeButtonClicked();
                 }

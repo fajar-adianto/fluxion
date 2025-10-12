@@ -26,16 +26,16 @@ QxStore {
 
     function getVariantToken(variant: int) : var {
         switch (variant) {
-          case FxButtonVariantToken.Elevated: // MD3 Expressive update doesn't include Elevated Icon Button. Fluxion still allows it.
+          case FxIconButtonVariantToken.Elevated: // MD3 Expressive update doesn't include Elevated Icon Button. Fluxion still allows it.
             return elevated_variant;
-          case FxButtonVariantToken.Filled:
+          case FxIconButtonVariantToken.Filled:
             return filled_variant;
-          case FxButtonVariantToken.Tonal:
+          case FxIconButtonVariantToken.Tonal:
             return tonal_variant;
-          case FxButtonVariantToken.Outlined:
+          case FxIconButtonVariantToken.Outlined:
             return outlined_variant;
-          case FxButtonVariantToken.Text:
-            return text_variant;
+          case FxIconButtonVariantToken.Standard:
+            return standard_variant;
           default:
             return tonal_variant;
         }
@@ -70,7 +70,7 @@ QxStore {
         readonly property alias filled: filled_variant
         readonly property alias tonal: tonal_variant
         readonly property alias outlined: outlined_variant
-        readonly property alias text: text_variant
+        readonly property alias standard: standard_variant
     }
 
     // Button measurement tokens.
@@ -214,10 +214,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.primary
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.primary
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.primary
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.primary
@@ -242,10 +242,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_selected: FxStyle.tokens.sys.color.surfaceAccent
-            label.opacity: 0.38
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.surfaceAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
@@ -270,10 +270,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.hovered.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.primary
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.primary
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.primary
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.primary
@@ -298,10 +298,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.focused.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.primary
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.primary
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.primary
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.primary
@@ -326,10 +326,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.pressed.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.primary
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.primary
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.primary
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.primary
@@ -360,10 +360,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.primaryAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.primaryAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
@@ -388,10 +388,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_selected: FxStyle.tokens.sys.color.surfaceAccent
-            label.opacity: 0.38
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.surfaceAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
@@ -416,10 +416,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.hovered.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.primaryAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.primaryAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
@@ -444,10 +444,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.focused.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.primaryAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.primaryAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
@@ -472,10 +472,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.pressed.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.primaryAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.primaryAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
@@ -506,10 +506,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.secondaryContainerAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.secondaryContainerAccent
-            label.color_toggle_selected: FxStyle.tokens.sys.color.secondaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.secondaryContainerAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.secondaryContainerAccent
@@ -534,10 +534,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_selected: FxStyle.tokens.sys.color.surfaceAccent
-            label.opacity: 0.38
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.surfaceAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
@@ -562,10 +562,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.secondaryAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.hovered.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.secondaryContainerAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.secondaryContainerAccent
-            label.color_toggle_selected: FxStyle.tokens.sys.color.secondaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.secondaryContainerAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.secondaryContainerAccent
@@ -590,10 +590,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.secondaryAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.focused.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.secondaryContainerAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.secondaryContainerAccent
-            label.color_toggle_selected: FxStyle.tokens.sys.color.secondaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.secondaryContainerAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.secondaryContainerAccent
@@ -618,10 +618,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.secondaryAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.pressed.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.secondaryContainerAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.secondaryContainerAccent
-            label.color_toggle_selected: FxStyle.tokens.sys.color.secondaryAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.secondaryContainerAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.secondaryContainerAccent
@@ -652,10 +652,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_selected: FxStyle.tokens.sys.color.inverseSurfaceAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.surfaceAccentVariant
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
@@ -680,10 +680,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_selected: FxStyle.tokens.sys.color.surfaceAccent
-            label.opacity: 0.38
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.surfaceAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
@@ -708,10 +708,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.inverseSurfaceAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.hovered.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_selected: FxStyle.tokens.sys.color.inverseSurfaceAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.surfaceAccentVariant
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
@@ -736,10 +736,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.inverseSurfaceAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.focused.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_selected: FxStyle.tokens.sys.color.inverseSurfaceAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.surfaceAccentVariant
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
@@ -764,10 +764,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.inverseSurfaceAccent
             container.stateLayer.opacity: FxStyle.tokens.sys.state.pressed.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
-            label.color_toggle_selected: FxStyle.tokens.sys.color.inverseSurfaceAccent
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.surfaceAccentVariant
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
@@ -782,7 +782,7 @@ QxStore {
     }
 
     FxButtonVariantToken {
-        id: text_variant
+        id: standard_variant
         colorConfig: FxButtonVariantToken.Text
         shadowColor: FxStyle.tokens.sys.color.shadow
         enabled {
@@ -798,13 +798,13 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.primary
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.primary
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primary
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
-            icon.color: FxStyle.tokens.sys.color.primary
-            icon.color_toggle_unselected: FxStyle.tokens.sys.color.primary
+            icon.color: FxStyle.tokens.sys.color.surfaceAccentVariant
+            icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
             icon.color_toggle_selected: FxStyle.tokens.sys.color.primary
             icon.opacity: 1.0
 
@@ -814,10 +814,10 @@ QxStore {
             outline.opacity: 0.0
         }
         disabled {
-            container.color: FxStyle.tokens.sys.color.surfaceAccent
-            container.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
-            container.color_toggle_selected: FxStyle.tokens.sys.color.surfaceAccent
-            container.opacity: 0.1
+            container.color: "transparent"
+            container.color_toggle_unselected: "transparent"
+            container.color_toggle_selected: "transparent"
+            container.opacity: 0.0
 
             container.elevation: FxStyle.tokens.sys.elevation.level0
 
@@ -826,10 +826,10 @@ QxStore {
             container.stateLayer.color_toggle_selected: "transparent"
             container.stateLayer.opacity: 0.0
 
-            label.color: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
-            label.color_toggle_selected: FxStyle.tokens.sys.color.surfaceAccent
-            label.opacity: 0.38
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
             icon.color: FxStyle.tokens.sys.color.surfaceAccent
             icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccent
@@ -849,18 +849,18 @@ QxStore {
 
             container.elevation: FxStyle.tokens.sys.elevation.level0
 
-            container.stateLayer.color: FxStyle.tokens.sys.color.primary
-            container.stateLayer.color_toggle_unselected: FxStyle.tokens.sys.color.primary
+            container.stateLayer.color: FxStyle.tokens.sys.color.surfaceAccentVariant
+            container.stateLayer.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.primary
             container.stateLayer.opacity: FxStyle.tokens.sys.state.hovered.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.primary
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.primary
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primary
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
-            icon.color: FxStyle.tokens.sys.color.primary
-            icon.color_toggle_unselected: FxStyle.tokens.sys.color.primary
+            icon.color: FxStyle.tokens.sys.color.surfaceAccentVariant
+            icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
             icon.color_toggle_selected: FxStyle.tokens.sys.color.primary
             icon.opacity: 1.0
 
@@ -877,18 +877,18 @@ QxStore {
 
             container.elevation: FxStyle.tokens.sys.elevation.level0
 
-            container.stateLayer.color: FxStyle.tokens.sys.color.primary
-            container.stateLayer.color_toggle_unselected: FxStyle.tokens.sys.color.primary
+            container.stateLayer.color: FxStyle.tokens.sys.color.surfaceAccentVariant
+            container.stateLayer.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.primary
             container.stateLayer.opacity: FxStyle.tokens.sys.state.focused.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.primary
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.primary
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primary
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
-            icon.color: FxStyle.tokens.sys.color.primary
-            icon.color_toggle_unselected: FxStyle.tokens.sys.color.primary
+            icon.color: FxStyle.tokens.sys.color.surfaceAccentVariant
+            icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
             icon.color_toggle_selected: FxStyle.tokens.sys.color.primary
             icon.opacity: 1.0
 
@@ -905,18 +905,18 @@ QxStore {
 
             container.elevation: FxStyle.tokens.sys.elevation.level0
 
-            container.stateLayer.color: FxStyle.tokens.sys.color.primary
-            container.stateLayer.color_toggle_unselected: FxStyle.tokens.sys.color.primary
+            container.stateLayer.color: FxStyle.tokens.sys.color.surfaceAccentVariant
+            container.stateLayer.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
             container.stateLayer.color_toggle_selected: FxStyle.tokens.sys.color.primary
             container.stateLayer.opacity: FxStyle.tokens.sys.state.pressed.stateLayerOpacity
 
-            label.color: FxStyle.tokens.sys.color.primary
-            label.color_toggle_unselected: FxStyle.tokens.sys.color.primary
-            label.color_toggle_selected: FxStyle.tokens.sys.color.primary
-            label.opacity: 1.0
+            label.color: "transparent"
+            label.color_toggle_unselected: "transparent"
+            label.color_toggle_selected: "transparent"
+            label.opacity: 0.0
 
-            icon.color: FxStyle.tokens.sys.color.primary
-            icon.color_toggle_unselected: FxStyle.tokens.sys.color.primary
+            icon.color: FxStyle.tokens.sys.color.surfaceAccentVariant
+            icon.color_toggle_unselected: FxStyle.tokens.sys.color.surfaceAccentVariant
             icon.color_toggle_selected: FxStyle.tokens.sys.color.primary
             icon.opacity: 1.0
 

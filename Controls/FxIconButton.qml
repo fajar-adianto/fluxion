@@ -8,6 +8,14 @@ FxExpressiveButton {
 
     // Enumerations.
 
+    enum Color {
+        Elevated,
+        Filled,
+        Tonal,
+        Outlined,
+        Standard
+    }
+
     enum Width {
         Default,
         Narrow,
@@ -52,7 +60,19 @@ FxExpressiveButton {
             case FxExpressiveButton.Color.Outlined:
                 return FxStyle.tokens.comp.iconButton.color.outlined;
             case FxExpressiveButton.Color.Text:
-                return FxStyle.tokens.comp.iconButton.color.text;
+                return FxStyle.tokens.comp.iconButton.color.standard;
+
+            case FxIconButton.Color.Elevated:
+                return FxStyle.tokens.comp.iconButton.color.elevated;
+            case FxIconButton.Color.Filled:
+                return FxStyle.tokens.comp.iconButton.color.filled;
+            case FxIconButton.Color.Tonal:
+                return FxStyle.tokens.comp.iconButton.color.tonal;
+            case FxIconButton.Color.Outlined:
+                return FxStyle.tokens.comp.iconButton.color.outlined;
+            case FxIconButton.Color.Standard:
+                return FxStyle.tokens.comp.iconButton.color.standard;
+
             default:
                 return FxStyle.tokens.comp.iconButton.color.tonal;
         }

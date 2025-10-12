@@ -8,6 +8,12 @@ FxButtonVariantToken::FxButtonVariantToken(QObject *parent)
     , hovered_{this}
     , pressed_{this}
 {
+    // Intentionally left empty.
+}
+
+FxIconButtonVariantToken::FxIconButtonVariantToken(QObject *parent)
+    : FxButtonVariantToken{parent}
+{
     // Intentionally left empty;
 }
 

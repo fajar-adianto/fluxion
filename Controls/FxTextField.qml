@@ -219,7 +219,7 @@ T.TextField {
 
         // Trailing icon specs (default values).
         color.defaultValue: root.hasError ? FxStyle.tokens.sys.color.error : FxStyle.tokens.sys.color.surfaceAccentVariant
-        opacity.defaultValue: 1.00
+        opacity.defaultValue: 1.0
 
         // Trailing icon specs (disabled).
         color.disabled: FxStyle.tokens.sys.color.surfaceAccent
@@ -282,7 +282,8 @@ T.TextField {
                 height: _.iconSize
                 width: height
 
-                FxTextButton {
+                FxIconButton {
+                    buttonColor: FxIconButton.Color.Standard
                     anchors.centerIn: parent
 
                     iconName: root.trailingIconName
@@ -290,13 +291,17 @@ T.TextField {
                     onPressAndHold: root.trailingButtonPressAndHold()
                     onReleased: root.trailingButtonReleased()
 
-                    labelTextSpecs.color.defaultValue: trailing_icon_specs.color.value
-                    labelTextSpecs.opacity.defaultValue: trailing_icon_specs.opacity.value
+                    // Label specifications.
 
-                    labelTextSpecs.color.disabled: trailing_icon_specs.color.disabled
                     labelTextSpecs.opacity.disabled: trailing_icon_specs.opacity.disabled
+                    labelTextSpecs.color.disabled: trailing_icon_specs.color.disabled
 
+                    labelTextSpecs.color.enabled: trailing_icon_specs.color.value
                     labelTextSpecs.color.hovered: trailing_icon_specs.color.hovered
+                    labelTextSpecs.color.focused: trailing_icon_specs.color.value
+                    labelTextSpecs.color.pressed: trailing_icon_specs.color.value
+
+                    // State layer specifications.
 
                     stateLayerSpecs.color.hovered: trailing_icon_specs.color.hovered
                     stateLayerSpecs.color.focused: trailing_icon_specs.color.hovered

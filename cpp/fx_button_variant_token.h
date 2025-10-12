@@ -173,4 +173,27 @@ signals:
     void shadowColorChanged();
 };
 
+
+class FxIconButtonVariantToken : public FxButtonVariantToken
+{
+    Q_OBJECT
+    QML_ELEMENT
+public:
+
+    // Enums.
+
+    enum class ColorConfig {
+        Elevated = static_cast<int>(FxButtonVariantToken::ColorConfig::Elevated), // MD3 Expressive update doesn't include Elevated Icon Button. Fluxion still allows it.
+        Filled = static_cast<int>(FxButtonVariantToken::ColorConfig::Filled),
+        Tonal,
+        Outlined,
+        Standard
+    };
+    Q_ENUM(ColorConfig)
+
+    // Constructor.
+
+    explicit FxIconButtonVariantToken(QObject *parent = nullptr);
+};
+
 #endif // FX_BUTTON_VARIANT_TOKEN_H
