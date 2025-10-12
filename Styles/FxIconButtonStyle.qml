@@ -103,7 +103,7 @@ QxStore {
         id: small
         sizeConfig: FxButtonMeasurementToken.Small
         height: 40
-        iconSize: 20
+        iconSize: 24
         outlineWidth: 1
         selectedContainerShape.pressedMorph: shape.pressedMorph
         selectedContainerShape.round: shape.square
