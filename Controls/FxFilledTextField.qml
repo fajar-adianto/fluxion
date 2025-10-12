@@ -92,7 +92,7 @@ FxTextField {
         FxSpringBehavior on y { springToken: FxStyle.tokens.sys.motion.spring.fast.spatial }
 
 
-        font { FxSpringBehavior on pixelSize { springtoken: FxStyle.tokens.sys.motion.spring.fast.effects } }
+        font { FxSpringBehavior on pixelSize { springToken: FxStyle.tokens.sys.motion.spring.fast.effects } }
 
     }
 }
