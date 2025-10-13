@@ -663,7 +663,7 @@ QxStore {
             icon.opacity: 1.0
 
             outline.color: FxStyle.tokens.sys.color.outlineVariant
-            outline.color_toggle_unselected: "transparent"
+            outline.color_toggle_unselected: FxStyle.tokens.sys.color.outlineVariant
             outline.color_toggle_selected: "transparent"
             outline.opacity: 1.0
         }
